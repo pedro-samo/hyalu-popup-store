@@ -1,0 +1,93 @@
+.cancel-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  padding: 25px 20px;
+  background-color: #fff;
+  box-sizing: border-box;
+  text-align: center;
+
+  &__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 25px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 150%;
+    margin-bottom: 17px;
+    text-align: center;
+    color: #000;
+
+    b {
+      font-weight: 700;
+    }
+
+    &.cancel-page__day,
+    &.cancel-page__time {
+      width: 100%;
+      text-align: left;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 100%;
+      text-transform: uppercase;
+    }
+
+    &.cancel-page__time {
+      margin-bottom: 25px;
+    }
+
+    &.cancel-page__warning {
+      font-size: 15px;
+      color: #ff0000;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      max-width: 289px;
+    }
+
+    &.cancel-page__tip {
+      font-size: 10px;
+      margin-top: 25px;
+      margin-bottom: 0;
+      text-align: left;
+    }
+  }
+
+  button + button {
+    margin-top: 13px;
+    background-color: #5b5b5b !important;
+  }
+
+  p.cancel-page__qrindisponivel,
+  p.cancel-page__sentimosMuito {
+    text-align: left;
+    width: 100%;
+    max-width: 342px;
+    font-size: 15px;
+  }
+
+  p.cancel-page__qrindisponivel {
+    margin-bottom: 30px;
+  }
+}

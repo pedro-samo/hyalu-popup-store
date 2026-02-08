@@ -1,0 +1,16 @@
+.swal2-container {
+  .swal2-popup {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .swal2-title {
+    font-family: "Gotham", sans-serif;
+  }
+
+  .swal2-html-container {
+    font-family: "Gotham", sans-serif;
+  }
+}

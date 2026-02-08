@@ -1,0 +1,151 @@
+.qr-code-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 0 16px;
+  min-height: 100vh;
+  background: transparent;
+
+  &--no-appointment {
+    h2,
+    h3,
+    p {
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 120%;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    button {
+      margin-top: 35px;
+      color: #5b5b5b !important;
+
+      &:hover {
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+.qr-title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  text-align: center;
+  text-transform: uppercase;
+
+  margin-bottom: 12px;
+}
+
+.qr-subtitle {
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+  text-align: center;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 80px;
+    height: 2px;
+    background: #fff;
+    margin: 19px auto 21px auto;
+  }
+}
+
+.qr-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 24px;
+  gap: 17px;
+}
+
+.qr-info-row {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 100%;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+
+  b {
+    font-weight: 700;
+    line-height: 1.2;
+  }
+}
+
+.qr-warning {
+  font-weight: 325;
+  font-size: 0.85rem;
+  line-height: 100%;
+  text-align: left;
+  color: #ff0000;
+  margin: 0 0 24px 0;
+}
+
+.qr-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 24px auto;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 0;
+}
+
+.qr-image {
+  width: 233px;
+  height: 233px;
+  object-fit: contain;
+}
+
+.qr-code-label {
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
+  text-align: center;
+  text-transform: uppercase;
+
+  margin-bottom: 40px;
+}
+
+.qr-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.qr-cancel,
+.qr-reschedule {
+  background: none;
+  border: none;
+
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.qr-cancel:hover,
+.qr-reschedule:hover {
+  color: #e74c3c;
+}
+
+@media (max-width: 400px) {
+  .qr-image {
+    width: 140px;
+    height: 140px;
+  }
+  .qr-actions {
+    max-width: 90vw;
+  }
+}

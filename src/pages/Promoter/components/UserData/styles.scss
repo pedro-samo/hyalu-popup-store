@@ -1,0 +1,68 @@
+.user_data {
+  background: #fff;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 40px 20px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &_info {
+    width: 100%;
+    margin-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    color: #000;
+  }
+  &_row {
+    font-size: 28px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 0;
+    letter-spacing: 0.5px;
+  }
+  &_code {
+    margin-bottom: 32px;
+    font-size: 32px;
+    font-weight: 300;
+    color: #000;
+    span.bold {
+      font-weight: 700;
+      font-size: 32px;
+      color: #000;
+    }
+  }
+  &_date,
+  &_time {
+    font-size: 22px;
+    font-weight: 300;
+    color: #000;
+    margin-bottom: 12px;
+    span.bold {
+      font-weight: 700;
+      color: #000;
+      font-size: 22px;
+    }
+  }
+  .black {
+    width: 100%;
+    max-width: 540px;
+    height: 56px;
+    font-size: 20px;
+    font-weight: 700;
+    background: #5b5b5b;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    margin-top: 48px;
+    cursor: pointer;
+    transition: background 0.2s;
+    &:disabled {
+      background: #bfaea6;
+      cursor: not-allowed;
+    }
+  }
+}

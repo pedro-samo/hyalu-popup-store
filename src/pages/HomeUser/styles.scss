@@ -1,0 +1,125 @@
+.home_user {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 0.2px;
+  height: 100%;
+
+  &_header {
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    h2 {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 5px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      line-height: 135%;
+    }
+
+    h3 {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      line-height: 150%;
+    }
+  }
+
+  &_divider {
+    margin: 16px 0 20px;
+    width: 160px;
+    height: 2px;
+    background-color: #fff;
+    display: block;
+  }
+
+  &_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 150%;
+    gap: 14px;
+    max-width: 340px;
+
+    p {
+      font-weight: 300;
+      font-size: 13px;
+
+      strong {
+        font-weight: 500;
+      }
+    }
+  }
+
+  &_text_lead {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+  }
+
+  &_text_body {
+    font-size: 13px;
+  }
+
+  &_text_cta {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 155%;
+
+    span {
+      display: block;
+      margin-top: 6px;
+      font-size: 13px;
+      letter-spacing: 1.2px;
+    }
+  }
+
+  &_buttons {
+    margin-top: 22px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &_products {
+    margin-top: 22px;
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &_logout {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 12px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 40px;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+}

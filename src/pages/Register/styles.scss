@@ -1,0 +1,143 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &_header {
+    text-transform: uppercase;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    h2 {
+      font-size: 30px;
+      font-weight: 300;
+    }
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
+    }
+  }
+
+  &_form {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+
+    .input_container {
+      position: relative;
+      width: 100%;
+
+      select,
+      input {
+        font-family: "Jost", sans-serif;
+        width: 100%;
+        border: none;
+        padding: 15px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 100%;
+
+        &::placeholder {
+          font-family: "Jost", sans-serif;
+
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 100%;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    .error_message {
+      color: #ff0000;
+      font-size: 12px;
+      text-align: left;
+      margin-top: 5px;
+    }
+
+    .register_terms {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 6px;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.06);
+
+      .checkbox_container {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        text-align: left;
+        margin-bottom: 12px;
+
+        &:last-of-type {
+          margin-bottom: 8px;
+        }
+
+        input[type="checkbox"] {
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          width: 18px;
+          height: 18px;
+          background-color: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.8);
+          border-radius: 2px;
+          cursor: pointer;
+          flex-shrink: 0;
+          margin-top: 2px;
+          position: relative;
+
+          &:checked {
+            background-color: #ffffff;
+            border-color: #ffffff;
+          }
+
+          &:checked::after {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 0px;
+            width: 5px;
+            height: 10px;
+            border: solid #8b1f1f;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+          }
+        }
+
+        a {
+          text-decoration: underline;
+          line-height: 130%;
+        }
+
+        label {
+          font-size: 12px;
+          line-height: 150%;
+          color: #ffffff;
+        }
+      }
+
+      .register_terms_note {
+        font-size: 12px;
+        line-height: 150%;
+        color: #ffffff;
+        margin-top: 6px;
+      }
+    }
+  }
+}

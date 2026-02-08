@@ -1,0 +1,50 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  background-image: radial-gradient(60% 55% at 60% 55%, #b0282b 0%, #981f22 35%, #6f1417 70%, #3a0a0b 100%);
+  background-color: #3a0a0b;
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 40px;
+
+  &_container {
+    margin: 0 auto;
+    max-width: calc(100% - 40px);
+    width: 100%;
+
+    @media (min-width: 1025px) {
+      max-width: 800px;
+    }
+
+    &_header {
+      display: flex;
+      align-items: center;
+      position: relative;
+      justify-content: center;
+      padding: 30px 0 15px;
+
+      button {
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        left: 0;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      &_logo {
+        width: 180px;
+      }
+    }
+  }
+
+  .botaoVoltar {
+    font-weight: 325;
+    font-size: 12px;
+    line-height: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: "Jost", sans-serif;
+  }
+}
