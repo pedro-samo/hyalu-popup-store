@@ -169,13 +169,6 @@ export const Schedule = ({ isPromoter }: { isPromoter?: boolean }) => {
           </p>
         </div>
       )}
-
-      <div className="schedule-page__hero">
-        <h1 className="schedule-page__hero-title">Clínica de longevidade capilar</h1>
-        <h3 className="schedule-page__hero-subtitle">Prolongue a longevidade do seu cabelo</h3>
-      </div>
-      <span className="schedule-page__divider" />
-
       <h2 className="schedule-page__selection-title">
         SELECIONE O MELHOR {step === 1 ? "DIA" : "HORÁRIO"} <br /> PARA A SUA VISITAÇÃO
       </h2>

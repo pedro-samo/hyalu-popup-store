@@ -50,6 +50,10 @@ export const Cancel = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [canceled]);
 
+  const goToSchedule = () => {
+    navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=schedule`, { replace: true });
+  };
+
   const cancelScheduledDate = async () => {
     setIsLoading(true);
 
@@ -96,88 +100,67 @@ export const Cancel = () => {
 
   return (
     <div className="cancel-page">
-      <div className="cancel-page__hero">
-        <h1>Clínica de longevidade capilar</h1>
-        <h3>Prolongue a longevidade do seu cabelo</h3>
-      </div>
-      <span className="cancel-page__divider" />
-
       {!canceled ? (
         <>
-          <div className="cancel-page__box">
-            <h2>
-              DESEJA CANCELAR
-              <br />
-              SUA VISITA?
-            </h2>
+          <h2 className="cancel-page__title">DESEJA CANCELAR SUA VISITA?</h2>
 
-            <div className="cancel-page__disclaimer">
-              <p className="cancel-page__line">
-                DIA: <b>{date}</b>
-              </p>
-              <p className="cancel-page__line">
-                HORÁRIO: <b>{time}</b>
-              </p>
-              <p className="cancel-page__line cancel-page__line--address">
-                ENDEREÇO: <b>BARRA SHOPPING</b>
-              </p>
-              <p className="cancel-page__address-detail">PISO AMÉRICAS - EM FRENTE À LOJA DA MAC</p>
+          <div className="cancel-page__box">
+            <div className="cancel-page__content">
+              <div className="cancel-page__disclaimer">
+                <p className="cancel-page__line">
+                  DIA: <b>{date}</b>
+                </p>
+                <p className="cancel-page__line">
+                  HORÁRIO: <b>{time}</b>
+                </p>
+                <p className="cancel-page__line cancel-page__line--address">
+                  ENDEREÇO: <b>1º PISO BARRA SHOPPING</b>
+                </p>
+                <p className="cancel-page__address-detail">- RIO DE JANEIRO</p>
+              </div>
+
+              <p className="cancel-page__warning">LEMBRAMOS QUE SEU QR CODE FICARÁ INDISPONÍVEL</p>
             </div>
 
-            <p className="cancel-page__warning">
-              LEMBRAMOS QUE SEU QR CODE
-              <br />
-              FICARÁ INDISPONÍVEL
-            </p>
+            <div className="cancel-page__actions">
+              <Button
+                text={isLoading ? "Cancelando..." : "SIM, DESEJO CANCELAR"}
+                className="primary cancel-page__confirm cancel-page__confirm--outline"
+                onClick={cancelScheduledDate}
+                disabled={isLoading}
+              />
+
+              <Button
+                text="AGENDAR NOVA DATA"
+                className="primary cancel-page__reschedule cancel-page__reschedule--fill"
+                onClick={goToSchedule}
+              />
+            </div>
           </div>
-
-          <Button
-            text={isLoading ? "Cancelando..." : "Sim, desejo cancelar"}
-            className="primary cancel-page__confirm"
-            onClick={cancelScheduledDate}
-            disabled={isLoading}
-          />
-
-          <Button
-            text="Agendar nova data"
-            className="primary cancel-page__reschedule"
-            onClick={() =>
-              navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=schedule`, {
-                replace: true
-              })
-            }
-          />
         </>
       ) : (
         <>
+          <h2 className="cancel-page__title">SUA VISITA FOI CANCELADA</h2>
+
           <div className="cancel-page__box cancel-page__box--canceled">
-            <h2>SUA VISITA FOI CANCELADA</h2>
+            <div className="cancel-page__content cancel-page__content--canceled">
+              <p className="cancel-page__sentimosMuito">SENTIMOS MUITO QUE NÃO CONSIGA COMPARECER.</p>
+              <p className="cancel-page__qrindisponivel">Lembramos que seu QR Code atual ficará indisponível.</p>
+            </div>
 
-            <p className="cancel-page__sentimosMuito">SENTIMOS MUITO QUE NÃO CONSIGA COMPARECER.</p>
-            <p className="cancel-page__qrindisponivel">LEMBRAMOS QUE SEU QR CODE ATUAL FICARÁ INDISPONÍVEL.</p>
+            <p className="cancel-page__tip">
+              Dica: Se ainda queira participar desta experiência, você ainda pode agendar uma visita em outro dia e
+              horário.
+            </p>
+
+            <div className="cancel-page__actions cancel-page__actions--single">
+              <Button
+                text="AGENDAR NOVA DATA"
+                className="primary cancel-page__reschedule cancel-page__reschedule--fill"
+                onClick={goToSchedule}
+              />
+            </div>
           </div>
-
-          <Button
-            text="Sim, desejo cancelar"
-            className="primary cancel-page__confirm"
-            onClick={() =>
-              navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=home`, {
-                replace: true
-              })
-            }
-          />
-
-          <Button
-            text="Agendar nova data"
-            className="primary cancel-page__reschedule"
-            onClick={() =>
-              navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=schedule`, {
-                replace: true
-              })
-            }
-          />
-
-          <p className="cancel-page__tip">DICA: SE AINDA QUEIRA PARTICIPAR DESTA EXPERIÊNCIA, VOCÊ AINDA PODE AGENDAR UMA VISITA EM OUTRO DIA E HORÁRIO.</p>
         </>
       )}
     </div>

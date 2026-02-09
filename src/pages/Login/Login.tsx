@@ -101,12 +101,6 @@ export const Login = () => {
 
   return (
     <div className="login_container">
-      <div className="login_hero">
-        <h1>Clínica de longevidade capilar</h1>
-        <h3>Prolongue a longevidade do seu cabelo</h3>
-      </div>
-      <span className="login_divider" />
-
       {!showForgot ? (
         <>
           <h2 className="login_title">FAÇA O SEU LOGIN</h2>

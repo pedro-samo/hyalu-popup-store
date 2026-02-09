@@ -62,12 +62,6 @@ export const QrCode = () => {
         !user?.appointment ? "qr-code-page--no-appointment" : view === "menu" ? "qr-code-page--action-menu" : ""
       }`}
     >
-      <div className="qr-code-page__hero">
-        <h1>Clínica de longevidade capilar</h1>
-        <h3>Prolongue a longevidade do seu cabelo</h3>
-      </div>
-      <span className="qr-code-page__divider" />
-
       {!user?.appointment ? (
         <>
           <p className="qr-no-appointment-greeting">

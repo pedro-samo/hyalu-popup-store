@@ -82,12 +82,6 @@ export const Promoter = () => {
 
   return (
     <div className="promoter_user">
-      <div className="promoter_user_header">
-        <h1>Clínica de longevidade capilar</h1>
-        <h3>Prolongue a longevidade do seu cabelo</h3>
-      </div>
-      <span className="promoter_user_divider" />
-
       <div className="promoter_user_buttons">
         <Button text="Ler QR Code" onClick={() => setStep("scan")} className="primary" />
         <Button text="Validar com código" onClick={() => setStep("type")} className="white" />

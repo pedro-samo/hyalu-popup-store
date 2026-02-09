@@ -4,132 +4,32 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 24px 16px 0 16px;
+  padding: 24px 0 0;
   min-height: 100vh;
-  background: transparent;
 
-  &__hero {
-    width: 100%;
-    max-width: 560px;
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    margin-bottom: 20px;
-
-    h1 {
-      font-size: 23px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      line-height: 135%;
-      margin: 0;
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    h3 {
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      line-height: 150%;
-      margin: 0;
-      text-align: center;
-      text-transform: uppercase;
-    }
-  }
-
-  &__divider {
-    width: min(100%, 560px);
-    height: 2px;
-    background-color: #fff;
-    display: block;
-    margin-bottom: 20px;
-  }
-
-  &--no-appointment {
-    width: 100%;
-
-    .qr-code-page__divider {
-      margin-bottom: 56px;
-    }
-
-    .qr-no-appointment-greeting {
-      width: 100%;
-      max-width: 560px;
-      box-sizing: border-box;
-      padding: 0 8px;
-      overflow-wrap: anywhere;
-      font-weight: 400;
-      font-size: 22px;
-      line-height: 125%;
-      text-align: center;
-      text-transform: uppercase;
-      margin: 0 0 86px;
-    }
-
-    .qr-no-appointment-action {
-      width: 100%;
-      max-width: 560px;
-      box-sizing: border-box;
-      padding: 0 8px;
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 130%;
-      text-align: center;
-      text-transform: uppercase;
-      margin: 0 0 108px;
-    }
-
-    .qr-no-appointment-button {
-      width: min(100%, 566px);
-      margin: 0 auto;
-    }
-
-    @media (max-width: 475px) {
-      .qr-code-page__divider {
-        margin-bottom: 44px;
-      }
-
-      .qr-no-appointment-greeting {
-        font-size: 18px;
-        margin-bottom: 56px;
-      }
-
-      .qr-no-appointment-action {
-        font-size: 17px;
-        margin-bottom: 64px;
-      }
-    }
-  }
-
+  &--no-appointment,
   &--action-menu {
     width: 100%;
-
-    .qr-code-page__divider {
-      margin-bottom: 56px;
-    }
   }
 }
 
-.qr-action-greeting {
+.qr-no-appointment-greeting {
   width: 100%;
-  max-width: 560px;
+  max-width: 442px;
   box-sizing: border-box;
   padding: 0 8px;
   overflow-wrap: anywhere;
-  font-weight: 400;
-  font-size: 22px;
+  font-weight: 300;
+  font-size: 20px;
   line-height: 125%;
   text-align: center;
   text-transform: uppercase;
-  margin: 0 0 86px;
+  margin: 0 0 56px;
 }
 
-.qr-action-title {
+.qr-no-appointment-action {
   width: 100%;
-  max-width: 560px;
+  max-width: 442px;
   box-sizing: border-box;
   padding: 0 8px;
   font-weight: 700;
@@ -137,14 +37,48 @@
   line-height: 130%;
   text-align: center;
   text-transform: uppercase;
-  margin: 0 0 54px;
+  margin: 0 0 48px;
+}
+
+.qr-no-appointment-button {
+  width: 100%;
+  max-width: 442px;
+  margin: 0 auto;
+}
+
+.qr-action-greeting {
+  width: 100%;
+  max-width: 442px;
+  box-sizing: border-box;
+  padding: 0 8px;
+  overflow-wrap: anywhere;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 125%;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 56px;
+}
+
+.qr-action-title {
+  width: 100%;
+  max-width: 442px;
+  box-sizing: border-box;
+  padding: 0 8px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 40px;
 }
 
 .qr-action-buttons {
-  width: min(100%, 566px);
+  width: 100%;
+  max-width: 442px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .qr-action-button {
@@ -152,43 +86,51 @@
   padding: 10px !important;
 }
 
-.qr-title {
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 110%;
+.qr-details {
+  width: 100%;
+  max-width: 442px;
+  margin: 0 auto;
   text-align: center;
+}
+
+.qr-title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 110%;
   text-transform: uppercase;
-  margin-bottom: 14px;
+  color: #000;
 }
 
 .qr-subtitle {
-  color: #ffffff;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 140%;
-  margin-bottom: 20px;
+  margin: 4px 0 0;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 120%;
+  color: #000;
+}
+
+.qr-title-divider {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #599de0;
+  margin: 18px 0 16px;
 }
 
 .qr-disclaimer {
   width: 100%;
-  max-width: 360px;
   box-sizing: border-box;
-  color: #ffffff;
+  color: #000;
   text-align: left;
-  padding: 18px 14px 16px;
-  line-height: 1.2;
   margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.06);
 
   &__line {
-    font-size: 16px;
-    line-height: 120%;
+    font-size: 14px;
+    line-height: 124%;
     text-transform: uppercase;
-    margin-bottom: 4px;
+    margin: 0;
+    font-weight: 300;
 
     b {
       font-weight: 700;
@@ -196,138 +138,107 @@
   }
 
   &__line--address {
-    margin-top: 20px;
-  }
-
-  &__note {
-    font-size: 11px;
-    line-height: 120%;
-    margin-top: 8px;
-  }
-
-  &__address-detail {
-    text-transform: uppercase;
-    font-size: 14px;
-    line-height: 120%;
     margin-top: 4px;
+  }
+
+  &__city {
+    font-size: 14px;
+    line-height: 124%;
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 700;
   }
 }
 
 .qr-warning {
   box-sizing: border-box;
-  font-weight: 500;
-  font-size: 11px;
+  font-weight: 300;
+  font-size: 12px;
   line-height: 120%;
   text-align: center;
-  color: #ffffff;
+  color: #000;
   width: 100%;
-  margin-bottom: 24px;
-  text-transform: uppercase;
+  margin: 0 0 16px;
 }
 
 .qr-image-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 24px auto;
-  background: #fff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-  padding: 0;
+  width: 176px;
+  height: 176px;
+  margin: 0 auto 14px;
+  background: transparent;
+  border: 2px solid #599de0;
 }
 
 .qr-image {
-  width: 233px;
-  height: 233px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
 .qr-code-label {
   text-align: center;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 100%;
-  text-align: center;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 110%;
   text-transform: uppercase;
-
-  margin-bottom: 16px;
+  color: #000;
+  margin-bottom: 10px;
 }
 
 .qr-entry-note {
   box-sizing: border-box;
   text-align: center;
-  color: #ffffff;
+  color: #000;
+  font-weight: 300;
   font-size: 10px;
   line-height: 120%;
-  text-transform: uppercase;
-  max-width: 360px;
-  margin: 0 0 24px 0;
+  max-width: 420px;
+  margin: 0 auto 22px;
 }
 
 .qr-actions {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  justify-content: center;
+  gap: 4px;
   width: 100%;
-  max-width: 340px;
-  margin: 0 auto;
 }
 
 .qr-cancel,
 .qr-reschedule {
   flex: 1;
-  background-color: #e82526;
-  border: none;
+  border: 2px solid #599de0;
   font-family: "Locator", "Inter", sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   text-align: center;
   text-transform: uppercase;
-  padding: 9px;
-  font-size: 13px;
-  color: #fff;
+  padding: 10px 6px;
+  font-size: 14px;
   cursor: pointer;
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
-.qr-cancel:hover,
-.qr-reschedule:hover {
-  background-color: #c91f20;
+.qr-cancel {
+  background: transparent;
+  color: #599de0;
+}
+
+.qr-reschedule {
+  background: #599de0;
+  border-color: #599de0;
   color: #fff;
 }
 
-@media (max-width: 400px) {
-  .qr-code-page--action-menu {
-    .qr-code-page__divider {
-      margin-bottom: 44px;
-    }
-  }
+.qr-cancel:hover {
+  background: rgba(89, 157, 224, 0.12);
+}
 
-  .qr-action-greeting {
-    font-size: 18px;
-    margin-bottom: 56px;
-  }
-
-  .qr-action-title {
-    font-size: 17px;
-    margin-bottom: 40px;
-  }
-
-  .qr-subtitle {
-    font-size: 13px;
-  }
-
-  .qr-disclaimer {
-    &__line {
-      font-size: 14px;
-    }
-  }
-
-  .qr-image {
-    width: 140px;
-    height: 140px;
-  }
-  .qr-actions {
-    max-width: 90vw;
-  }
+.qr-reschedule:hover {
+  background: #599de0;
+  border-color: #599de0;
+  filter: brightness(0.9);
 }

@@ -51,12 +51,6 @@ export const UserData = ({
 
   return (
     <div className="user_data">
-      <div className="user_data_header">
-        <h1>Clínica de longevidade capilar</h1>
-        <h3>Prolongue a longevidade do seu cabelo</h3>
-      </div>
-      <span className="user_data_divider" />
-
       <div className="user_data_card">
         <div className="user_data_info">
           {validated ? (
