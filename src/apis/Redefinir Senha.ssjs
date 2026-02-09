@@ -41,7 +41,8 @@
     var newPassword = payloadObj.newPassword;
 
     var deNames = {
-      vichy: "tb_vichy_popup_store_users"
+      vichy: "tb_vichy_popup_store_users",
+      hyalu: "tb_hyalu_popup_store_users"
     };
 
     var deName = deNames[brand];

@@ -40,6 +40,10 @@
       vichy: {
         user: "3CF3C7B7-8EC5-4A47-A008-C99BF672ED3E",
         appointment: "3AF34049-298E-4030-9058-477A35FCF3DA"
+      },
+      hyalu: {
+        user: "02C2DBFB-5621-4055-8A2A-51E5F74C2F59",
+        appointment: "E331669A-B5AD-4397-89BA-295F4C85164D"
       }
     };
 

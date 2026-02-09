@@ -52,20 +52,8 @@ export const HomeUser = () => {
       </div>
 
       <div className="home_user_products">
-        <img src="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/2a80007e-3d8c-4b88-aa28-4892fae1a53a.png" />
+        <img src="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/7057b51a-2b20-4300-b865-f2b4251583a4.png" />
       </div>
-
-      {isLogged && (
-        <button
-          className="home_user_logout"
-          onClick={() => {
-            Cookies.remove("User_AuthCookie");
-            messageModal("Você foi deslogado com suceeso!", "success", "Sucesso!");
-          }}
-        >
-          Deslogar
-        </button>
-      )}
     </div>
   );
 };

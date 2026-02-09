@@ -28,7 +28,8 @@
     var fields = payloadObj.fields;
 
     var deNames = {
-      vichy: "tb_vichy_popup_store_appointments"
+      vichy: "tb_vichy_popup_store_appointments",
+      hyalu: "tb_hyalu_popup_store_appointments"
     };
 
     var deName = deNames[brand];

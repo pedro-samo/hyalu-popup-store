@@ -40,7 +40,7 @@
 
     var deNames = {
       vichy: "tb_vichy_popup_store_appointments",
-      kerastase: "tb_kerastase_popup_store_users"
+      hyalu: "tb_hyalu_popup_store_appointments"
     };
 
     var deName = deNames[brand];

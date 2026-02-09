@@ -29,11 +29,12 @@
 
     var brand = Platform.Request.GetQueryStringParameter("brand");
 
-    var deUsersKeys = {
-      vichy: "3AF34049-298E-4030-9058-477A35FCF3DA"
+    var deAppointmentsKeys = {
+      vichy: "3AF34049-298E-4030-9058-477A35FCF3DA",
+      hyalu: "E331669A-B5AD-4397-89BA-295F4C85164D"
     };
 
-    var DE_KEY = deUsersKeys[brand];
+    var DE_KEY = deAppointmentsKeys[brand];
 
     var token = payloadObj.fields ? payloadObj.fields.token : null;
 
