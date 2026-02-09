@@ -111,7 +111,6 @@ export const Register = ({ isPromoter }: { isPromoter?: boolean }) => {
 
   return (
     <div className="register">
-      <span className="register_divider" />
       <h1 className="register_title">FAÇA O SEU CADASTRO</h1>
       <form className="register_form" onSubmit={handleSubmit(onSubmit)}>
         <div className="input_container">
@@ -165,55 +164,42 @@ export const Register = ({ isPromoter }: { isPromoter?: boolean }) => {
           <input {...register("senha")} placeholder="SENHA" type="password" />
           {errors.senha && <p className="error_message">{errors.senha.message}</p>}
         </div>
-        <div className="register_terms">
-          <div className="checkbox_container">
-            <input {...register("cienciaComparecimento")} type="checkbox" id="cienciaComparecimento" />
-            <label htmlFor="cienciaComparecimento">
-              Declaro que estou ciente de que, para participar da ação e realizar o procedimento na Clínica de
-              Longevidade Capilar Dercos, devo comparecer no horário agendado com o cabelo limpo (lavado) e seco.
-            </label>
-          </div>
-          {errors.cienciaComparecimento && <p className="error_message">{errors.cienciaComparecimento.message}</p>}
 
+        <div className="register_terms">
           <div className="checkbox_container">
             <input {...register("cienciaTermos")} type="checkbox" id="cienciaTermos" />
             <label htmlFor="cienciaTermos">
-              Desejo participar da ativação da Clínica de Longevidade Capilar, de acordo os Termos e condições do
-              Regulamento presentes no link.
+              Aceito o Termos e Condições do Regulamento da campanha presentes no link:{" "}
+              <a
+                href="http://image.crm.loreal.com.br/lib/fe8812727d6200787d/m/1/4eabd865-a145-43fa-b005-8aef7c5d62e3.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                http://image.crm.loreal.com.br/lib/fe8812727d6200787d/m/1/4eabd865-a145-43fa-b005-8aef7c5d62e3.pdf
+              </a>
             </label>
           </div>
           {errors.cienciaTermos && <p className="error_message">{errors.cienciaTermos.message}</p>}
 
           <div className="checkbox_container">
-            <input {...register("autorizacaoImagem")} type="checkbox" id="autorizacaoImagem" />
-            <label htmlFor="autorizacaoImagem">
-              Autorizo o uso da minha imagem, voz e declarações registradas durante o evento pela L'Oréal Brasil, para
-              fins de divulgação institucional e promocional, em quaisquer mídias e canais da empresa, sem limitação de
-              prazo e território.
-            </label>
-          </div>
-          {errors.autorizacaoImagem && <p className="error_message">{errors.autorizacaoImagem.message}</p>}
-
-          <div className="checkbox_container">
             <input {...register("aceiteComunicacao")} type="checkbox" id="aceiteComunicacao" />
             <label htmlFor="aceiteComunicacao">
-              Aceito também receber comunicações sobre produtos e serviços da L'Oréal Brasil e suas marcas. Você pode
-              cancelar a assinatura a qualquer momento por meio do link disponibilizado em nossas comunicações.
+              Aceito receber comunicações sobre produtos e serviços da L’Oréal Brasil e suas marcas. Você pode cancelar
+              a assinatura a qualquer momento por meio do link disponibilizado em nossas comunicações.
             </label>
           </div>
 
           <div className="checkbox_container">
             <input {...register("aceiteProdutos")} type="checkbox" id="aceiteProdutos" />
             <label htmlFor="aceiteProdutos">
-              Além de participar da Clínica de Longevidade Capilar, aceito receber produtos e amostras de outras
-              campanhas futuras e lançamentos de outras marcas da L'Oréal Brasil.
+              Além de participar da campanha de La Roche Posay, aceito receber produtos e amostras de outras campanhas
+              futuras e lançamentos da L'Oréal Brasil.
             </label>
           </div>
 
           <p className="register_terms_note">
-            A Clínica de Longevidade Capilar Dercos faz parte da Vichy, marca do Grupo L'Oréal no Brasil, e utilizará
-            seus dados pessoais de acordo com a Política de Privacidade. Este serviço é voltado para maiores de 18
-            (dezoito) anos.
+            La Roche Posay faz parte da L’Oréal Brasil e utilizará seus dados pessoais de acordo com a Política de
+            Privacidade. Este serviço é voltado para maiores de 18 (dezoito) anos.
           </p>
         </div>
 

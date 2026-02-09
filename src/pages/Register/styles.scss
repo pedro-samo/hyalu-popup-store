@@ -21,7 +21,7 @@
     margin-top: 20px;
     text-transform: uppercase;
     font-size: 23px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 1.2px;
     line-height: 135%;
   }
@@ -77,68 +77,71 @@
       border: 1px solid rgba(255, 255, 255, 0.35);
       border-radius: 6px;
       text-align: left;
-      background: rgba(255, 255, 255, 0.06);
+      background: #ffffff0f;
 
       .checkbox_container {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
+        position: relative;
         text-align: left;
         margin-bottom: 12px;
 
         &:last-of-type {
-          margin-bottom: 8px;
+          margin-bottom: 10px;
         }
 
         input[type="checkbox"] {
           appearance: none;
           -webkit-appearance: none;
           -moz-appearance: none;
-          width: 18px;
-          height: 18px;
-          background-color: transparent;
-          border: 1px solid rgba(255, 255, 255, 0.8);
-          border-radius: 2px;
+          width: 14px;
+          height: 14px;
+          background-color: #ffffff;
+          border: 1px solid #9b9b9b;
+          border-radius: 1px;
           cursor: pointer;
-          flex-shrink: 0;
-          margin-top: 2px;
-          position: relative;
-
-          &:checked {
-            background-color: #ffffff;
-            border-color: #ffffff;
-          }
-
-          &:checked::after {
-            content: "";
-            position: absolute;
-            left: 4px;
-            top: 0px;
-            width: 5px;
-            height: 10px;
-            border: solid #8b1f1f;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-          }
+          position: absolute;
+          left: 0;
+          top: 0;
+          margin: 0;
         }
 
-        a {
-          text-decoration: underline;
-          line-height: 130%;
+        input[type="checkbox"]:checked {
+          background-color: #1ea6f2;
+          border-color: #1ea6f2;
+        }
+
+        input[type="checkbox"]:checked::after {
+          content: "";
+          position: absolute;
+          left: 4px;
+          top: 1px;
+          width: 3px;
+          height: 7px;
+          border: solid #ffffff;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
         }
 
         label {
+          display: block;
           font-size: 12px;
-          line-height: 150%;
-          color: #ffffff;
+          line-height: 130%;
+          color: #231f20;
+          text-indent: 20px;
+
+          a {
+            color: #231f20;
+            text-decoration: none;
+            display: inline;
+            word-break: break-all;
+          }
         }
       }
 
       .register_terms_note {
         font-size: 12px;
-        line-height: 150%;
-        color: #ffffff;
-        margin-top: 6px;
+        line-height: 130%;
+        color: #231f20;
+        margin-top: 4px;
       }
     }
   }

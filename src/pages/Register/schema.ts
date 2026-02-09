@@ -18,20 +18,14 @@ export const schema = yup.object().shape({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])/,
       "A senha precisa ter uma letra maiúscula, uma minúscula, um número e um caracter especial"
     ),
-  cienciaComparecimento: yup
-    .boolean()
-    .oneOf([true], "Você deve aceitar os termos de comparecimento")
-    .required("Você deve aceitar os termos de comparecimento"),
   cienciaTermos: yup
     .boolean()
     .oneOf([true], "Você deve aceitar os termos e condições")
     .required("Você deve aceitar os termos e condições"),
-  autorizacaoImagem: yup
-    .boolean()
-    .oneOf([true], "Você deve aceitar os termos de autorização de uso de imagem")
-    .required("Você deve aceitar os termos e condições"),
   aceiteComunicacao: yup.boolean().default(false),
-  aceiteProdutos: yup.boolean().default(false)
+  aceiteProdutos: yup.boolean().default(false),
+  cienciaComparecimento: yup.boolean().default(true),
+  autorizacaoImagem: yup.boolean().default(true)
 });
 
 export type FormValues = yup.InferType<typeof schema>;
