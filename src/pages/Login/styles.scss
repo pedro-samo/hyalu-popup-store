@@ -8,7 +8,7 @@
   padding: 24px 12px 0;
   box-sizing: border-box;
   color: #fff;
-  font-family: "Jost", sans-serif;
+  font-family: "Locator", "Inter", sans-serif;
 
   .login_hero {
     text-transform: uppercase;
@@ -76,7 +76,7 @@
       flex-direction: column;
 
       input {
-        font-family: "Jost", sans-serif;
+        font-family: "Locator", "Inter", sans-serif;
         outline: none;
         padding: 12px;
         border: none;
@@ -87,7 +87,7 @@
         line-height: 100%;
 
         &::placeholder {
-          font-family: "Jost", sans-serif;
+          font-family: "Locator", "Inter", sans-serif;
           font-weight: 500;
           font-size: 14px;
           line-height: 100%;
@@ -113,7 +113,7 @@
     }
 
     .forgot_password {
-      font-family: "Jost", sans-serif;
+      font-family: "Locator", "Inter", sans-serif;
       font-weight: 325;
       font-size: 12px;
       line-height: 100%;
@@ -204,7 +204,7 @@
 
       &::placeholder {
         color: #231f20;
-        font-family: "Jost", sans-serif;
+        font-family: "Locator", "Inter", sans-serif;
         font-weight: 500;
         font-size: 14px;
         line-height: 100%;
