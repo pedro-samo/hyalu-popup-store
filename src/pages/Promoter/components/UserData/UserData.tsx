@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Button } from "../../../../components";
@@ -13,6 +13,10 @@ export const UserData = ({
 }: UserDataInterface & { setStep: (step: "home" | "type" | "scan" | "userData") => void }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [validated, setIsvalidated] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [validated]);
 
   const homeReturn = () => {
     setIsvalidated(false);
@@ -47,31 +51,39 @@ export const UserData = ({
 
   return (
     <div className="user_data">
-      <div className="user_data_info">
-        {validated ? (
-          <div className="user_data_row user_data_code">
-            CHECK-IN <br /> <span className="bold">REALIZADO!</span>
-          </div>
-        ) : (
-          <>
-            <div className="user_data_row user_data_code">
-              VISITANTE: <span className="bold">{userInfos.name}</span>
-            </div>
-            <div className="user_data_row user_data_date">
-              DIA: <span className="bold">{userInfos.appointment.split("-")[0]}</span>
-            </div>
-            <div className="user_data_row user_data_time">
-              HORÁRIO: <span className="bold">{userInfos.appointment.split("-")[1]}</span>
-            </div>{" "}
-          </>
-        )}
+      <div className="user_data_header">
+        <h1>Clínica de longevidade capilar</h1>
+        <h3>Prolongue a longevidade do seu cabelo</h3>
       </div>
-      <Button
-        text={isLoading ? "Valindando..." : validated ? "Início" : "VALIDAR"}
-        className="primary"
-        onClick={validated ? homeReturn : doCheckin}
-        disabled={isLoading}
-      />
+      <span className="user_data_divider" />
+
+      <div className="user_data_card">
+        <div className="user_data_info">
+          {validated ? (
+            <div className="user_data_row user_data_code">
+              CHECK-IN <br /> <span className="bold">REALIZADO!</span>
+            </div>
+          ) : (
+            <>
+              <div className="user_data_row user_data_code">
+                VISITANTE: <span className="bold">{userInfos.name}</span>
+              </div>
+              <div className="user_data_row user_data_date">
+                DIA: <span className="bold">{userInfos.appointment.split("-")[0]}</span>
+              </div>
+              <div className="user_data_row user_data_time">
+                HORÁRIO: <span className="bold">{userInfos.appointment.split("-")[1]}</span>
+              </div>
+            </>
+          )}
+        </div>
+        <Button
+          text={isLoading ? "Validando..." : validated ? "Início" : "VALIDAR"}
+          className="primary user_data_button"
+          onClick={validated ? homeReturn : doCheckin}
+          disabled={isLoading}
+        />
+      </div>
     </div>
   );
 };

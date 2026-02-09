@@ -1,5 +1,6 @@
 .promoter_user {
-  margin-top: 75px;
+  font-family: "Jost", sans-serif;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,28 +11,40 @@
 
   &_header {
     text-transform: uppercase;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    gap: 7px;
-
-    h2 {
-      font-size: 30px;
-      font-weight: 300;
-    }
+    gap: 0;
 
     h1 {
-      font-size: 42px;
+      font-size: 23px;
       font-weight: 700;
+      letter-spacing: 1.2px;
+      line-height: 135%;
+      margin: 0;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      line-height: 150%;
+      margin: 0;
+      text-transform: uppercase;
     }
   }
 
+  &_divider {
+    width: min(100%, 560px);
+    height: 2px;
+    background-color: #fff;
+    display: block;
+    margin: 20px 0 56px;
+  }
+
   &_buttons {
-    margin-top: 40px;
-    width: 100%;
+    width: min(100%, 560px);
     display: flex;
     flex-direction: column;
     gap: 12px;

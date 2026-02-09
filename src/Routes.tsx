@@ -22,6 +22,10 @@ export function Router() {
   const searchParams = new URLSearchParams(location.search);
   const page = searchParams.get("page");
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location.pathname, location.search]);
+
   let pageComponent;
 
   switch (page) {

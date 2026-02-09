@@ -12,13 +12,13 @@ interface SelectDayProps {
   selectedDate: SelectedDate;
   isLoading: boolean;
   currentAppointments:
-  | {
-    [key: string]: {
-      hour: string;
-      appointments: number;
-    };
-  }[]
-  | null;
+    | {
+        [key: string]: {
+          hour: string;
+          appointments: number;
+        };
+      }[]
+    | null;
 }
 
 export const SelectHour = ({
@@ -66,6 +66,7 @@ export const SelectHour = ({
           );
         })}
       </div>
+      <p className="hour-note">Para garantir o atendimento, compareça ao local pontualmente no horário marcado.</p>
       <Button
         text={isLoading ? "Agendando..." : "Selecionar Horário"}
         onClick={handleSubmit}

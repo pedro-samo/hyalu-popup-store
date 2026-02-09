@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 import { Button } from "../../components";
 import { useUserContext } from "../../context";
-import { celularMask } from "../../utils/masks";
+import { celularMask, cpfMask } from "../../utils/masks";
 import { messageModal } from "../../utils/messageModal";
 
 import { type FormValues, schema } from "./schema";
@@ -29,6 +29,7 @@ export const RegisterExpress = ({ isPromoter }: { isPromoter?: boolean }) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const cpfRegister = register("cpf");
   const celularRegister = register("celular");
 
   useEffect(() => {
@@ -48,6 +49,7 @@ export const RegisterExpress = ({ isPromoter }: { isPromoter?: boolean }) => {
         ...data,
         SubscriberKey: data.email,
         EmailAddress: data.email,
+        cpf: data.cpf.replace(/\D/g, ""),
         celular: data.celular.replace(/\D/g, ""),
         token: `VIC${token}`,
         linkQrCode: `https://quickchart.io/qr?text=VIC${token}`,
@@ -100,10 +102,8 @@ export const RegisterExpress = ({ isPromoter }: { isPromoter?: boolean }) => {
 
   return (
     <div className="register">
-      <div className="register_header">
-        <h2>Apresenta Pop Up</h2>
-        <h1>Gloss Absolu</h1>
-      </div>
+      <span className="register_divider" />
+      <h1 className="register_title">FAÇA O SEU CADASTRO</h1>
       <form className="register_form" onSubmit={handleSubmit(onSubmit)}>
         <div className="input_container">
           <input {...register("nome")} placeholder="NOME" />
@@ -117,6 +117,17 @@ export const RegisterExpress = ({ isPromoter }: { isPromoter?: boolean }) => {
         <div className="input_container">
           <input {...register("email")} placeholder="E-MAIL" />
           {errors.email && <p className="error_message">{errors.email.message}</p>}
+        </div>
+        <div className="input_container">
+          <input
+            {...cpfRegister}
+            placeholder="CPF | EXEMPLO 000.000.000-00"
+            onChange={(event) => {
+              event.target.value = cpfMask(event.target.value);
+              cpfRegister.onChange(event);
+            }}
+          />
+          {errors.cpf && <p className="error_message">{errors.cpf.message}</p>}
         </div>
         <div className="input_container">
           <input

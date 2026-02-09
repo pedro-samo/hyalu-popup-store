@@ -28,6 +28,10 @@ export const Promoter = () => {
     Cookies.remove("User_AuthCookie");
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [step]);
+
   const onSubmit = async (data: FormValues): Promise<boolean | void> => {
     setIsLoading(true);
     try {
@@ -79,9 +83,10 @@ export const Promoter = () => {
   return (
     <div className="promoter_user">
       <div className="promoter_user_header">
-        <h2>Entre no mundo de</h2>
-        <h1>Gloss Absolu</h1>
+        <h1>Clínica de longevidade capilar</h1>
+        <h3>Prolongue a longevidade do seu cabelo</h3>
       </div>
+      <span className="promoter_user_divider" />
 
       <div className="promoter_user_buttons">
         <Button text="Ler QR Code" onClick={() => setStep("scan")} className="primary" />

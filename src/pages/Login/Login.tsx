@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +42,11 @@ export const Login = () => {
         }
       };
 
-      const response = await axios.post("https://cloud.crm.dermaclub.com.br/popup-store-login?brand=vichy", body, config);
+      const response = await axios.post(
+        "https://cloud.crm.dermaclub.com.br/popup-store-login?brand=vichy",
+        body,
+        config
+      );
       const finallyData = response?.data;
 
       if (finallyData?.statusCode === 200) {
@@ -62,6 +66,10 @@ export const Login = () => {
   const [forgotEmail, setForgotEmail] = useState("");
   const [forgotLoading, setForgotLoading] = useState(false);
   const [forgotSent, setForgotSent] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [showForgot, forgotSent]);
 
   const handleForgot = async () => {
     if (!forgotEmail) return;
@@ -93,12 +101,15 @@ export const Login = () => {
 
   return (
     <div className="login_container">
+      <div className="login_hero">
+        <h1>Clínica de longevidade capilar</h1>
+        <h3>Prolongue a longevidade do seu cabelo</h3>
+      </div>
+      <span className="login_divider" />
+
       {!showForgot ? (
         <>
-          <div className="login_header">
-            <h2>SEJA BEM VINDO(A) À</h2>
-            <h1>CASA GLOSS ABSOLU</h1>
-          </div>
+          <h2 className="login_title">FAÇA O SEU LOGIN</h2>
 
           <form className="login_form" onSubmit={handleSubmit(onSubmit)}>
             <div className="input_container">
@@ -127,7 +138,12 @@ export const Login = () => {
               ESQUECI MINHA SENHA
             </button>
 
-            <Button className="white" type="submit" text={isLoading ? "ENVIANDO..." : "ENVIAR"} disabled={isLoading} />
+            <Button
+              className="primary login_submit"
+              type="submit"
+              text={isLoading ? "ENVIANDO..." : "ENVIAR"}
+              disabled={isLoading}
+            />
           </form>
         </>
       ) : (
@@ -138,38 +154,40 @@ export const Login = () => {
 
           {!forgotSent ? (
             <>
-              <div className="esqueceu-sua-senha">
-                <h2 className="forgot_title">ESQUECEU SUA SENHA?</h2>
+              <h2 className="forgot_title">ESQUECEU SUA SENHA?</h2>
+              <div className="forgot_panel">
                 <p className="forgot_text">
                   Insira o e-mail cadastrado e enviaremos <br /> uma nova senha.
                 </p>
+
+                <input
+                  name="forgotEmail"
+                  id="forgot-email"
+                  type="email"
+                  placeholder="E-mail"
+                  value={forgotEmail}
+                  onChange={(e) => setForgotEmail(e.target.value)}
+                  className="forgot_input"
+                />
+
+                <Button
+                  text={forgotLoading ? "ENVIANDO..." : "ENVIAR"}
+                  className="primary forgot_submit"
+                  onClick={handleForgot}
+                  disabled={forgotLoading}
+                />
               </div>
-
-              <input
-                name="forgotEmail"
-                id="forgot-email"
-                type="email"
-                placeholder="E-mail"
-                value={forgotEmail}
-                onChange={(e) => setForgotEmail(e.target.value)}
-                className="forgot_input"
-              />
-
-              <Button
-                text={forgotLoading ? "ENVIANDO..." : "ENVIAR"}
-                className="primary"
-                onClick={handleForgot}
-                disabled={forgotLoading}
-              />
             </>
           ) : (
             <>
               <h2 className="forgot_title">PRONTO!</h2>
-              <p className="forgot_text">
-                Enviamos uma nova senha para o e-mail <br /> informado. Verifique o seu e-mail!
-              </p>
+              <div className="forgot_panel forgot_panel--success">
+                <p className="forgot_text">
+                  Enviamos uma nova senha para o e-mail <br /> informado. <br /> <br /> Verifique o seu e-mail!
+                </p>
 
-              <Button text="FAZER LOGIN" className="primary" onClick={() => setShowForgot(false)} />
+                <Button text="FAZER LOGIN" className="primary forgot_submit" onClick={() => setShowForgot(false)} />
+              </div>
             </>
           )}
         </div>

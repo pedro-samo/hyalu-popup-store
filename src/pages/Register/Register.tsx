@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 import { Button } from "../../components";
 import { useUserContext } from "../../context";
-import { celularMask, dateMask } from "../../utils/masks";
+import { celularMask, cpfMask, dateMask } from "../../utils/masks";
 import { messageModal } from "../../utils/messageModal";
 import { transformDate } from "../../utils/transformDate";
 
@@ -23,14 +23,15 @@ export const Register = ({ isPromoter }: { isPromoter?: boolean }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FormValues>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema)
   });
 
   const [isLoading, setIsLoading] = useState(false);
 
   const dataNascimentoRegister = register("dataNascimento");
+  const cpfRegister = register("cpf");
   const celularRegister = register("celular");
 
   useEffect(() => {
@@ -43,13 +44,16 @@ export const Register = ({ isPromoter }: { isPromoter?: boolean }) => {
     setIsLoading(true);
 
     try {
-      const tokenInscription = await axios.get(`https://cloud.crm.dermaclub.com.br/popup-store-gerador-token?brand=vichy`);
+      const tokenInscription = await axios.get(
+        `https://cloud.crm.dermaclub.com.br/popup-store-gerador-token?brand=vichy`
+      );
       const token = tokenInscription?.data?.token;
 
       const fields = {
         ...data,
         SubscriberKey: data.email,
         EmailAddress: data.email,
+        cpf: data.cpf.replace(/\D/g, ""),
         dataNascimento: transformDate(data.dataNascimento),
         celular: data.celular.replace(/\D/g, ""),
         token: `VIC${token}`,
@@ -107,10 +111,8 @@ export const Register = ({ isPromoter }: { isPromoter?: boolean }) => {
 
   return (
     <div className="register">
-      <div className="register_header">
-        <h2>Apresenta Pop Up</h2>
-        <h1>Gloss Absolu</h1>
-      </div>
+      <span className="register_divider" />
+      <h1 className="register_title">FAÇA O SEU CADASTRO</h1>
       <form className="register_form" onSubmit={handleSubmit(onSubmit)}>
         <div className="input_container">
           <input {...register("nome")} placeholder="NOME" />
@@ -131,6 +133,17 @@ export const Register = ({ isPromoter }: { isPromoter?: boolean }) => {
             }}
           />
           {errors.dataNascimento && <p className="error_message">{errors.dataNascimento.message}</p>}
+        </div>
+        <div className="input_container">
+          <input
+            {...cpfRegister}
+            placeholder="CPF | EXEMPLO 000.000.000-00"
+            onChange={(event) => {
+              event.target.value = cpfMask(event.target.value);
+              cpfRegister.onChange(event);
+            }}
+          />
+          {errors.cpf && <p className="error_message">{errors.cpf.message}</p>}
         </div>
 
         <div className="input_container">

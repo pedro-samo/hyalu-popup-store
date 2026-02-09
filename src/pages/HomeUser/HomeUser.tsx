@@ -33,16 +33,21 @@ export const HomeUser = () => {
       <span className="home_user_divider" />
       <div className="home_user_text">
         <p className="home_user_text_lead">
-          Vichy Dercos convida você para viver a ciência da longevidade capilar no Barra Shopping.
+          Vichy Dercos convida você para <br /> viver a ciência da longevidade <br /> capilar no Barra Shopping
         </p>
         <p className="home_user_text_body">
-          Venha participar de uma experiência imersiva dedicada à saúde do seu couro cabeludo. Conheça as inovações
-          de Dercos e realize um procedimento capilar com protocolos desenvolvidos para diferentes necessidades de
-          queda e quebra capilar.
+          Venha participar de uma experiência <br /> imersiva dedicada à saúde do seu <br />
+          couro cabeludo. Conheça as inovações <br />
+          de <br />
+          Dercos e realize um procedimento <br />
+          capilar com protocolos desenvolvidos <br />
+          para diferentes necessidades de queda <br />e quebra capilar.
         </p>
         <p className="home_user_text_cta">
-          Você sente que seu cabelo está caindo ou anda mais frágil e danificado?
-          <span>Então essa experiência é pra você.</span>
+          Você sente que seu cabelo está <br />
+          caindo
+          <br />
+          ou anda mais frágil e danificado?
         </p>
       </div>
 
@@ -54,6 +59,18 @@ export const HomeUser = () => {
       <div className="home_user_products">
         <img src="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/7057b51a-2b20-4300-b865-f2b4251583a4.png" />
       </div>
+
+      {isLogged && (
+        <button
+          className="home_user_logout"
+          onClick={() => {
+            Cookies.remove("User_AuthCookie");
+            messageModal("Você foi deslogado com suceeso!", "success", "Sucesso!");
+          }}
+        >
+          Deslogar
+        </button>
+      )}
     </div>
   );
 };

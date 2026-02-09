@@ -15,6 +15,7 @@ interface SelectDayProps {
 
 export const SelectDay = ({ setStep, selectedDate, setSelectedDate, isLoading }: SelectDayProps) => {
   const [error, setError] = useState("");
+  const yearShort = String(new Date().getFullYear()).slice(-2);
 
   function nextStep() {
     if (!selectedDate.day) {
@@ -39,8 +40,10 @@ export const SelectDay = ({ setStep, selectedDate, setSelectedDate, isLoading }:
               }}
               type="button"
             >
-              {day.day} - {" "}
-              {day.label}
+              <span className="day-weekday">{day.day.toUpperCase()}</span>
+              <span className="day-date">
+                {day.label.toUpperCase()} {yearShort}
+              </span>
             </button>
           );
         })}

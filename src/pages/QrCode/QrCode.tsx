@@ -1,133 +1,129 @@
-import { useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Button } from "../../components";
 import { Loading } from "../../components/Loading/Loading";
 import { useUserContext } from "../../context";
 
+import { ActionMenu, AppointmentDetails } from "./components";
+
 import "./styles.scss";
+
+interface QrCodeLocationState {
+  openDetails?: boolean;
+}
 
 const formatAppointment = (str?: string | null | undefined) => {
   if (!str) return { date: "", time: "" };
 
   const [dayMonth, time] = str.split("-");
   const [day, month] = dayMonth.split("/");
-
-  const months = [
-    "janeiro",
-    "fevereiro",
-    "março",
-    "abril",
-    "maio",
-    "junho",
-    "julho",
-    "agosto",
-    "setembro",
-    "outubro",
-    "novembro",
-    "dezembro"
+  const monthNames = [
+    "JANEIRO",
+    "FEVEREIRO",
+    "MARÇO",
+    "ABRIL",
+    "MAIO",
+    "JUNHO",
+    "JULHO",
+    "AGOSTO",
+    "SETEMBRO",
+    "OUTUBRO",
+    "NOVEMBRO",
+    "DEZEMBRO"
   ];
 
+  const monthLabel = monthNames[parseInt(month, 10) - 1] ?? "";
+  const year = new Date().getFullYear();
+
   return {
-    date: `${day} de ${months[parseInt(month, 10) - 1]} de 2025`,
+    date: `${day} DE ${monthLabel} DE ${year}`,
     time
   };
 };
 
 export const QrCode = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const { user, appLoading } = useUserContext();
-
+  const openDetailsOnLoad = (location.state as QrCodeLocationState | null)?.openDetails === true;
+  const [view, setView] = useState<"menu" | "details">(openDetailsOnLoad ? "details" : "menu");
   const { date, time } = useMemo(() => formatAppointment(user?.appointment), [user?.appointment]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [view, user?.appointment]);
 
   if (appLoading) return <Loading />;
 
-  if (!user?.appointment) {
-    return (
-      <div className="qr-code-page qr-code-page--no-appointment">
-        <h2>
-          Olá, <b>{user?.name}</b>,<br />
-          seja bem vinda.
-        </h2>
+  return (
+    <div
+      className={`qr-code-page ${
+        !user?.appointment ? "qr-code-page--no-appointment" : view === "menu" ? "qr-code-page--action-menu" : ""
+      }`}
+    >
+      <div className="qr-code-page__hero">
+        <h1>Clínica de longevidade capilar</h1>
+        <h3>Prolongue a longevidade do seu cabelo</h3>
+      </div>
+      <span className="qr-code-page__divider" />
 
-        <h3 className="qr-code-page__subtitle">
-          <b>Como podemos te ajudar?</b>
-        </h3>
+      {!user?.appointment ? (
+        <>
+          <p className="qr-no-appointment-greeting">
+            OLÁ, {user?.name?.toUpperCase()}
+            <br />
+            SEJA BEM VINDO (A)
+          </p>
 
-        <Button
-          text="Fazer agendamento"
-          className="white"
-          onClick={() =>
+          <h2 className="qr-no-appointment-action">
+            SELECIONE ABAIXO O
+            <br />
+            QUE DESEJA FAZER:
+          </h2>
+
+          <Button
+            text="FAZER AGENDAMENTO"
+            className="primary qr-no-appointment-button"
+            onClick={() =>
+              navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=schedule`, {
+                replace: true
+              })
+            }
+          />
+        </>
+      ) : view === "menu" ? (
+        <ActionMenu
+          userName={user?.name}
+          onConsult={() => setView("details")}
+          onCancel={() =>
+            navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=cancel`, {
+              replace: true
+            })
+          }
+          onReschedule={() =>
             navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=schedule`, {
               replace: true
             })
           }
         />
-      </div>
-    );
-  }
-
-  return (
-    <div className="qr-code-page">
-      <h2 className="qr-title">Obrigada pelo seu agendamento!</h2>
-
-      <span className="qr-subtitle">Esperamos você para vivermos momentos inesquecíveis.</span>
-
-      <div className="qr-info">
-        <div className="qr-info-row">
-          <span>
-            DIA: <b>{date}</b>
-          </span>
-        </div>
-        <div className="qr-info-row">
-          <span>
-            HORÁRIO: <b>{time}</b>
-          </span>
-        </div>
-        <div className="qr-info-row">
-          <span>
-            ENDEREÇO:{" "}
-            <b>
-              CASA GLOSS ABSOLU <br />
-              RUA CONDE BERNADOTTE, 26 - LEBLON
-            </b>
-          </span>
-        </div>
-      </div>
-
-      <p className="qr-warning">
-        Abaixo está o seu QRCode + código de acesso, em breve você receberá um e-mail com mais informações
-      </p>
-
-      <div className="qr-image-wrapper">
-        <img className="qr-image" src={`https://quickchart.io/qr?text=${user?.token || "000000"}`} alt="QR Code" />
-      </div>
-
-      <div className="qr-code-label">CÓDIGO: {user?.token || "000000"}</div>
-
-      <div className="qr-actions">
-        <button
-          className="qr-cancel"
-          onClick={() =>
+      ) : (
+        <AppointmentDetails
+          date={date}
+          time={time}
+          token={user?.token}
+          onCancel={() =>
             navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=cancel`, {
               replace: true
             })
           }
-        >
-          CANCELAR
-        </button>
-
-        <button
-          className="qr-reschedule"
-          onClick={() =>
+          onReschedule={() =>
             navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=schedule`, {
               replace: true
             })
           }
-        >
-          REAGENDAR
-        </button>
-      </div>
+        />
+      )}
     </div>
   );
 };

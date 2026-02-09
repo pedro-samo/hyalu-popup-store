@@ -50,6 +50,10 @@ export const Schedule = ({ isPromoter }: { isPromoter?: boolean }) => {
     hour: ""
   });
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [step]);
+
   const postSelectedDate = async () => {
     setIsLoading(true);
 
@@ -90,7 +94,10 @@ export const Schedule = ({ isPromoter }: { isPromoter?: boolean }) => {
         if (!isPromoter) {
           userPasswordLogin(finallyData.token);
           messageModal("Agendamento realizado com sucesso!", "success", "Sucesso!");
-          return navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=qrCode`, { replace: true });
+          return navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=qrCode`, {
+            replace: true,
+            state: { openDetails: true }
+          });
         } else {
           messageModal("Checkin realizado com sucesso!", "success", "Sucesso!");
           return navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=promoter`, { replace: true });
@@ -163,9 +170,15 @@ export const Schedule = ({ isPromoter }: { isPromoter?: boolean }) => {
         </div>
       )}
 
-      <h1>
-        Selecione o <b>melhor {step === 1 ? "dia" : "horário"}</b> para a sua visitação
-      </h1>
+      <div className="schedule-page__hero">
+        <h1 className="schedule-page__hero-title">Clínica de longevidade capilar</h1>
+        <h3 className="schedule-page__hero-subtitle">Prolongue a longevidade do seu cabelo</h3>
+      </div>
+      <span className="schedule-page__divider" />
+
+      <h2 className="schedule-page__selection-title">
+        SELECIONE O MELHOR {step === 1 ? "DIA" : "HORÁRIO"} <br /> PARA A SUA VISITAÇÃO
+      </h2>
 
       {step === 1 ? (
         <SelectDay
