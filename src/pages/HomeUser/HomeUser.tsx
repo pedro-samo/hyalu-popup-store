@@ -25,29 +25,24 @@ export const HomeUser = () => {
 
   return (
     <div className="home_user">
-      <div className="home_user_header">
-        <h2>Apresenta</h2>
-        <h1>Clínica de longevidade capilar</h1>
-        <h3>Prolongue a longevidade do seu cabelo</h3>
-      </div>
       <span className="home_user_divider" />
+
       <div className="home_user_text">
         <p className="home_user_text_lead">
-          Vichy Dercos convida você para <br /> viver a ciência da longevidade <br /> capilar no Barra Shopping
+          A LA ROCHE-POSAY CONVIDA VOCÊ PARA UMA EXPERIÊNCIA <br /> INÉDITA: O PODER DO PREENCHIMENTO DE HYALU
+          <span className="highlight"> B5.</span>
         </p>
+
         <p className="home_user_text_body">
-          Venha participar de uma experiência <br /> imersiva dedicada à saúde do seu <br />
-          couro cabeludo. Conheça as inovações <br />
-          de <br />
-          Dercos e realize um procedimento <br />
-          capilar com protocolos desenvolvidos <br />
-          para diferentes necessidades de queda <br />e quebra capilar.
+          <strong>Pela primeira vez no Brasil,</strong> desembarcamos no Barra Shopping com uma imersão sensorial e
+          tecnológica totalmente dedicada ao queridinho dos dermatologistas. Prepare-se para descobrir a ciência por
+          trás do <strong>Hyalu</strong> <span className="highlight">B5</span>, o sérum que une a alta performance do
+          Ácido Hialurônico puro com a reparação profunda da Vitamina B5.
         </p>
+
         <p className="home_user_text_cta">
-          Você sente que seu cabelo está <br />
-          caindo
-          <br />
-          ou anda mais frágil e danificado?
+          VISITE A POP UP HYALU <span className="highlight">B5</span> E MERGULHE EM UM CENÁRIO CONTEMPORÂNEO E
+          SOFISTICADO, DESENHADO PARA TRANSFORMAR SUA ROTINA DE CUIDADOS.
         </p>
       </div>
 
@@ -65,7 +60,7 @@ export const HomeUser = () => {
           className="home_user_logout"
           onClick={() => {
             Cookies.remove("User_AuthCookie");
-            messageModal("Você foi deslogado com suceeso!", "success", "Sucesso!");
+            messageModal("Você foi deslogado com sucesso!", "success", "Sucesso!");
           }}
         >
           Deslogar
