@@ -83,7 +83,7 @@ export const Schedule = ({ isPromoter }: { isPromoter?: boolean }) => {
       };
 
       const response = await axios.post(
-        "https://cloud.crm.dermaclub.com.br/popup-store-agendamento-usuario?brand=vichy",
+        "https://cloud.crm.dermaclub.com.br/popup-store-agendamento-usuario?brand=hyalu",
         body,
         config
       );
@@ -131,7 +131,7 @@ export const Schedule = ({ isPromoter }: { isPromoter?: boolean }) => {
       };
 
       const response = await axios.post(
-        "https://cloud.crm.dermaclub.com.br/popup-store-buscar-agendamentos?brand=vichy",
+        "https://cloud.crm.dermaclub.com.br/popup-store-buscar-agendamentos?brand=hyalu",
         body,
         config
       );

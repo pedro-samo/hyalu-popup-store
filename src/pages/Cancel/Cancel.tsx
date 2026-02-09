@@ -74,7 +74,7 @@ export const Cancel = () => {
       };
 
       const response = await axios.post(
-        "https://cloud.crm.dermaclub.com.br/popup-store-agendamento-usuario?brand=vichy",
+        "https://cloud.crm.dermaclub.com.br/popup-store-agendamento-usuario?brand=hyalu",
         body,
         config
       );

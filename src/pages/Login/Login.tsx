@@ -43,7 +43,7 @@ export const Login = () => {
       };
 
       const response = await axios.post(
-        "https://cloud.crm.dermaclub.com.br/popup-store-login?brand=vichy",
+        "https://cloud.crm.dermaclub.com.br/popup-store-login?brand=hyalu",
         body,
         config
       );
@@ -83,7 +83,7 @@ export const Login = () => {
     setForgotLoading(true);
     try {
       await axios.post(
-        "https://cloud.crm.dermaclub.com.br/popup-store-esqueceu-senha?brand=vichy",
+        "https://cloud.crm.dermaclub.com.br/popup-store-esqueceu-senha?brand=hyalu",
         JSON.stringify({
           fields: {
             email: forgotEmail

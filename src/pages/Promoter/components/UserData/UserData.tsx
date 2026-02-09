@@ -35,7 +35,7 @@ export const UserData = ({
           "Content-Type": "application/json; charset=utf-8"
         }
       };
-      const response = await axios.post("https://cloud.crm.dermaclub.com.br/popup-store-checkin?brand=vichy", body, config);
+      const response = await axios.post("https://cloud.crm.dermaclub.com.br/popup-store-checkin?brand=hyalu", body, config);
       const finallyData = response?.data;
       if (finallyData?.statusCode === 200) {
         setIsvalidated(true);

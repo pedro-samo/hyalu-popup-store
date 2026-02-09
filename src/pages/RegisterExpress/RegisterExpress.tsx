@@ -42,7 +42,7 @@ export const RegisterExpress = ({ isPromoter }: { isPromoter?: boolean }) => {
     setIsLoading(true);
 
     try {
-      const tokenInscription = await axios.get("https://cloud.crm.dermaclub.com.br/popup-store-gerador-token?brand=vichy");
+      const tokenInscription = await axios.get("https://cloud.crm.dermaclub.com.br/popup-store-gerador-token?brand=hyalu");
       const token = tokenInscription?.data?.token;
 
       const fields = {
@@ -74,7 +74,7 @@ export const RegisterExpress = ({ isPromoter }: { isPromoter?: boolean }) => {
       };
 
       const response = await axios.post(
-        "https://cloud.crm.dermaclub.com.br/popup-store-registro-usuario?brand=vichy",
+        "https://cloud.crm.dermaclub.com.br/popup-store-registro-usuario?brand=hyalu",
         body,
         config
       );

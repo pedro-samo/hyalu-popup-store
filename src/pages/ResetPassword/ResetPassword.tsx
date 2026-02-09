@@ -43,7 +43,7 @@ export const ResetPassword = () => {
         newPassword: data.newPassword
       });
 
-      const response = await axios.post("https://cloud.crm.dermaclub.com.br/popup-store-redefinir-senha?brand=vichy", body, {
+      const response = await axios.post("https://cloud.crm.dermaclub.com.br/popup-store-redefinir-senha?brand=hyalu", body, {
         headers: {
           "Content-Type": "application/json; charset=utf-8"
         }

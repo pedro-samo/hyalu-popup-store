@@ -45,7 +45,7 @@ export const Promoter = () => {
         }
       };
       const response = await axios.post(
-        "https://cloud.crm.dermaclub.com.br/popup-store-promotor-token-validation?brand=vichy",
+        "https://cloud.crm.dermaclub.com.br/popup-store-promotor-token-validation?brand=hyalu",
         body,
         config
       );
