@@ -68,7 +68,7 @@ export const Schedule = ({ isPromoter }: { isPromoter?: boolean }) => {
         hora: selectedDate.hour,
         checkin: isPromoter ? true : false,
         local: "Rio de Janeiro - Barra Shopping",
-        linkQrCode: `https://quickchart.io/qr?text=VIC${user?.token}`
+        linkQrCode: `https://quickchart.io/qr?text=LRP${user?.token}`
       };
 
       const body = JSON.stringify({

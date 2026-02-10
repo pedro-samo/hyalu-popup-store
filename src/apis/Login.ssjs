@@ -38,12 +38,12 @@
 
     var deUsersKeys = {
       vichy: {
-        user: "3CF3C7B7-8EC5-4A47-A008-C99BF672ED3E",
-        appointment: "3AF34049-298E-4030-9058-477A35FCF3DA"
+        user: "3CF3C7B7-8EC5-4A47-A008-C99BF672ED3E", // tb_vichy_popup_store_users
+        appointment: "3AF34049-298E-4030-9058-477A35FCF3DA" // tb_vichy_popup_store_appointments
       },
       hyalu: {
-        user: "02C2DBFB-5621-4055-8A2A-51E5F74C2F59",
-        appointment: "E331669A-B5AD-4397-89BA-295F4C85164D"
+        user: "B4F685D0-BCDC-441D-B800-E3BF700A0A19", // tb_lrp_hyalu_popup_store_users
+        appointment: "74206CBD-4294-46EC-898C-C7F7CD713117" // tb_lrp_hyalu_popup_store_appointments
       }
     };
 

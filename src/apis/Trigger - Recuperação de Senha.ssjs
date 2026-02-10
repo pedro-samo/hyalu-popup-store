@@ -33,7 +33,7 @@
 
     var deNames = {
       vichy: "tb_vichy_popup_store_users",
-      hyalu: "tb_hyalu_popup_store_users"
+      hyalu: "tb_lrp_hyalu_popup_store_users"
     };
 
     var deName = deNames[brand];
@@ -77,7 +77,12 @@
               resetToken: resetToken
             };
 
-            var TSD = TriggeredSend.Init("124280");
+            var triggerKey = {
+              vichy: "124388",
+              hyalu: "124280"
+            };
+
+            var TSD = TriggeredSend.Init(triggerKey[brand]);
             var Status = TSD.Send(email, fields);
 
             if (Status != "OK") {

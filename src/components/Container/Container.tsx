@@ -22,12 +22,10 @@ export const Container = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  console.log("PAGE", page);
-
   return (
     <article className="main" style={{ paddingBottom: page ? '40px ' : undefined }}>
       <img className="main_bubble top" src="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/a3d12551-57c5-45f1-995c-f178854e7807.png" />
-      <section className="main_container">
+      <section className="main_container" style={{ minHeight: page ? 'auto' : '100vh' }}>
         <div className="main_container_header">
           {page && page !== "home" && page !== "promoter" && !appLoading && (
             <button className="botaoVoltar" onClick={goBack}>

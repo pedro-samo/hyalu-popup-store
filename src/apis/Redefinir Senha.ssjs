@@ -42,7 +42,7 @@
 
     var deNames = {
       vichy: "tb_vichy_popup_store_users",
-      hyalu: "tb_hyalu_popup_store_users"
+      hyalu: "tb_lrp_hyalu_popup_store_users"
     };
 
     var deName = deNames[brand];

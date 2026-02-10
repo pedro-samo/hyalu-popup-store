@@ -11,7 +11,7 @@
   IF Lowercase(Trim(@brand)) == "vichy" THEN
     SET @deName = "tb_vichy_popup_store_users"
   ELSEIF Lowercase(Trim(@brand)) == "hyalu" THEN
-    SET @deName = "tb_hyalu_popup_store_users"
+    SET @deName = "tb_lrp_hyalu_popup_store_users"
   ENDIF
   IF Empty(@deName) THEN
     SET @errorMessage = "Marca inválida ou ausente."

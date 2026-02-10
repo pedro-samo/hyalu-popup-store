@@ -56,8 +56,8 @@ export const Register = ({ isPromoter }: { isPromoter?: boolean }) => {
         cpf: data.cpf.replace(/\D/g, ""),
         dataNascimento: transformDate(data.dataNascimento),
         celular: data.celular.replace(/\D/g, ""),
-        token: `VIC${token}`,
-        linkQrCode: `https://quickchart.io/qr?text=VIC${token}`
+        token: `LRP${token}`,
+        linkQrCode: `https://quickchart.io/qr?text=LRP${token}`
       };
 
       if (!token) {
@@ -95,7 +95,7 @@ export const Register = ({ isPromoter }: { isPromoter?: boolean }) => {
             lastName: data.sobrenome,
             email: data.email,
             phone: data.celular.replace(/\D/g, ""),
-            token: `VIC${token}`,
+            token: `LRP${token}`,
             appointment: null
           });
         }

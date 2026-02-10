@@ -40,10 +40,16 @@
 
     var deNames = {
       vichy: "tb_vichy_popup_store_appointments",
-      hyalu: "tb_hyalu_popup_store_appointments"
+      hyalu: "tb_lrp_hyalu_popup_store_appointments"
+    };
+
+    var triggerIds = {
+      vichy: "124279",
+      hyalu: "124389"
     };
 
     var deName = deNames[brand];
+    var triggerId = triggerIds[brand];
 
     if (payloadObj.action && payloadObj.action == "remove" && fields.email) {
       try {
@@ -96,7 +102,7 @@
         var de = DataExtension.Init(deName);
         var removed = de.Rows.Remove(["email"], [fields.email]);
         if (removed > 0) {
-          var TSD = TriggeredSend.Init("124279");
+          var TSD = TriggeredSend.Init(triggerId);
           var Status = TSD.Send(fields.email, fields);
 
           if (Status != "OK") {
@@ -162,7 +168,7 @@
           );
         } else {
           try {
-            var TSD = TriggeredSend.Init("124279");
+            var TSD = TriggeredSend.Init(triggerId);
             var Status = TSD.Send(fields.email, fields);
 
             if (Status != "OK") {
