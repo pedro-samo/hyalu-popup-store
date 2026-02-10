@@ -132,6 +132,6 @@
         Write('{"message":' + Stringify(err) + ', "statusCode":500}');
       }
     } else {
-      Write('{"message":"Usuãrio não autorizado","statusCode":401}');
+      Write('{"message":"Usuário não autorizado","statusCode":401}');
     }
 </script>

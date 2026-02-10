@@ -214,7 +214,7 @@
       }
     } else {
       Write(
-        '{"message":"Campo Email inválido ou não encontradoo.","statusCode": 400}'
+        '{"message":"Campo Email inválido ou não encontrado.","statusCode": 400}'
       );
     }
 </script>

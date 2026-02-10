@@ -82,15 +82,17 @@ export const Promoter = () => {
 
   return (
     <div className="promoter_user">
+      <span className="promoter_user_divider" />
+
       <div className="promoter_user_buttons">
         <Button text="Ler QR Code" onClick={() => setStep("scan")} className="primary" />
-        <Button text="Validar com código" onClick={() => setStep("type")} className="white" />
+        <Button text="Validar com código" onClick={() => setStep("type")} className="primary" />
         <Button
           text="Agendamento Express"
           onClick={() =>
             navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=promoter-register`, { replace: true })
           }
-          className="white"
+          className="primary"
         />
       </div>
     </div>

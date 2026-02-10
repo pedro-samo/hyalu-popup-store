@@ -82,7 +82,7 @@
           }
         } else {
           Write(
-            '{"message":"Nenhuum dado foi encontrado por email: ' +
+            '{"message":"Nenhum dado foi encontrado por email: ' +
               email +
               '","statusCode": 404}'
           );
