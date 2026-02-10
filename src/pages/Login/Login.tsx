@@ -135,34 +135,30 @@ export const Login = () => {
             <Button
               className="primary login_submit"
               type="submit"
-              text={isLoading ? "ENVIANDO..." : "ENVIAR"}
+              text={isLoading ? "ENTRANDO..." : "ENTRAR"}
               disabled={isLoading}
             />
           </form>
         </>
       ) : (
         <div className="forgot_container">
-          <button type="button" className="forgot_close" onClick={() => setShowForgot(false)}>
-            ×
-          </button>
-
           {!forgotSent ? (
             <>
               <h2 className="forgot_title">ESQUECEU SUA SENHA?</h2>
               <div className="forgot_panel">
-                <p className="forgot_text">
-                  Insira o e-mail cadastrado e enviaremos <br /> uma nova senha.
-                </p>
+                <div className="forgot_body">
+                  <p className="forgot_text">Insira o e-mail cadastrado e enviaremos uma nova senha.</p>
 
-                <input
-                  name="forgotEmail"
-                  id="forgot-email"
-                  type="email"
-                  placeholder="E-mail"
-                  value={forgotEmail}
-                  onChange={(e) => setForgotEmail(e.target.value)}
-                  className="forgot_input"
-                />
+                  <input
+                    name="forgotEmail"
+                    id="forgot-email"
+                    type="email"
+                    placeholder="EMAIL"
+                    value={forgotEmail}
+                    onChange={(e) => setForgotEmail(e.target.value)}
+                    className="forgot_input"
+                  />
+                </div>
 
                 <Button
                   text={forgotLoading ? "ENVIANDO..." : "ENVIAR"}
@@ -176,9 +172,13 @@ export const Login = () => {
             <>
               <h2 className="forgot_title">PRONTO!</h2>
               <div className="forgot_panel forgot_panel--success">
-                <p className="forgot_text">
-                  Enviamos uma nova senha para o e-mail <br /> informado. <br /> <br /> Verifique o seu e-mail!
-                </p>
+                <div className="forgot_body">
+                  <p className="forgot_text">
+                    Enviamos uma nova senha para o e-mail informado.
+                    <br />
+                    Verifique o seu e-mail!
+                  </p>
+                </div>
 
                 <Button text="FAZER LOGIN" className="primary forgot_submit" onClick={() => setShowForgot(false)} />
               </div>

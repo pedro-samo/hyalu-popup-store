@@ -65,9 +65,9 @@
     &::after {
       content: "";
       display: inline-block;
-      width: 80px;
+      width: 200px;
       height: 2px;
-      background: #fff;
+      background: #599de0;
       margin: 26px auto 24px auto;
     }
 
@@ -78,6 +78,7 @@
       line-height: 120%;
       text-align: center;
       text-transform: uppercase;
+      margin-bottom: 12px;
     }
   }
 }

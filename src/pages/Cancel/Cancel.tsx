@@ -144,13 +144,15 @@ export const Cancel = () => {
 
           <div className="cancel-page__box cancel-page__box--canceled">
             <div className="cancel-page__content cancel-page__content--canceled">
-              <p className="cancel-page__sentimosMuito">SENTIMOS MUITO QUE NÃO CONSIGA COMPARECER.</p>
+              <p className="cancel-page__sentimosMuito">
+                SENTIMOS MUITO QUE NÃO <br /> CONSIGA COMPARECER.
+              </p>
               <p className="cancel-page__qrindisponivel">Lembramos que seu QR Code atual ficará indisponível.</p>
             </div>
 
             <p className="cancel-page__tip">
-              Dica: Se ainda queira participar desta experiência, você ainda pode agendar uma visita em outro dia e
-              horário.
+              <span>Dica:</span> Se ainda queira participar desta experiência, você ainda pode agendar uma visita em
+              outro dia e horário.
             </p>
 
             <div className="cancel-page__actions cancel-page__actions--single">
