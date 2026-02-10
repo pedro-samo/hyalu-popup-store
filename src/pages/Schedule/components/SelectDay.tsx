@@ -35,7 +35,7 @@ export const SelectDay = ({ setStep, selectedDate, setSelectedDate, isLoading }:
               key={day.value}
               className={`day-button ${selectedDate.day === day.value ? "selected" : ""}`}
               onClick={() => {
-                setSelectedDate({ ...selectedDate, day: day.value });
+                setSelectedDate({ ...selectedDate, day: day.value, hour: "" });
                 setError("");
               }}
               type="button"

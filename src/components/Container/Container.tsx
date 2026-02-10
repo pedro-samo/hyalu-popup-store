@@ -13,13 +13,12 @@ export const Container = ({ children }: { children: ReactNode }) => {
   const page = searchParams.get("page");
 
   const goBack = () => {
-    if (page && page === "qrCode") {
-      navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}`);
-    } else if (page && page.includes("promoter")) {
-      navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=promoter`, { replace: true });
-    } else {
+    if (window.history.length > 1) {
       navigate(-1);
+      return;
     }
+
+    navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}`);
   };
 
   return (

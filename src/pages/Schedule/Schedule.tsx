@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { Loading } from "../../components";
@@ -41,6 +41,7 @@ const formatAppointment = (str: string | null | undefined) => {
 
 export const Schedule = ({ isPromoter }: { isPromoter?: boolean }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { appLoading, user, userPasswordLogin } = useUserContext();
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(1);
@@ -51,8 +52,18 @@ export const Schedule = ({ isPromoter }: { isPromoter?: boolean }) => {
   });
 
   useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    setStep(searchParams.get("step") === "2" ? 2 : 1);
+  }, [location.search]);
+
+  useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [step]);
+
+  const setScheduleStep = (nextStep: number) => {
+    const search = nextStep === 2 ? "?page=schedule&step=2" : "?page=schedule";
+    navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}${search}`, { replace: nextStep === 1 });
+  };
 
   const postSelectedDate = async () => {
     setIsLoading(true);
@@ -175,7 +186,7 @@ export const Schedule = ({ isPromoter }: { isPromoter?: boolean }) => {
 
       {step === 1 ? (
         <SelectDay
-          setStep={setStep}
+          setStep={setScheduleStep}
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
           isLoading={isLoading}

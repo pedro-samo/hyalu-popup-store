@@ -6,19 +6,21 @@ import type { SelectedDate } from "../Schedule";
 
 import "./styles.scss";
 
+const SUNDAY_LIMITED_DAYS = new Set(["22/02", "01/03"]);
+
 interface SelectDayProps {
   postSelectedDate: () => void;
   setSelectedDate: (date: SelectedDate) => void;
   selectedDate: SelectedDate;
   isLoading: boolean;
   currentAppointments:
-  | {
-    [key: string]: {
-      hour: string;
-      appointments: number;
-    };
-  }[]
-  | null;
+    | {
+        [key: string]: {
+          hour: string;
+          appointments: number;
+        };
+      }[]
+    | null;
 }
 
 export const SelectHour = ({
@@ -31,8 +33,14 @@ export const SelectHour = ({
   const [error, setError] = useState("");
   if (!currentAppointments) return <Loading />;
 
+  const visibleHours = SUNDAY_LIMITED_DAYS.has(selectedDate.day)
+    ? hours.filter((hour) => hour.value >= "13:00" && hour.value <= "19:00")
+    : hours;
+
   function handleSubmit() {
-    if (!selectedDate.hour) {
+    const isVisibleSelectedHour = visibleHours.some((hour) => hour.value === selectedDate.hour);
+
+    if (!selectedDate.hour || !isVisibleSelectedHour) {
       setError("Por favor, selecione um horário antes de continuar.");
       return;
     }
@@ -43,11 +51,11 @@ export const SelectHour = ({
   return (
     <>
       <div className="hour-selection">
-        {hours.map((hour) => {
+        {visibleHours?.map((hour) => {
           const isDisabled = currentAppointments.some(
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-expect-error
-            (appointment) => appointment.hour === hour.value && appointment.appointments >= 5
+            (appointment) => appointment.hour === hour.value && appointment.appointments >= 20
           );
 
           return (
