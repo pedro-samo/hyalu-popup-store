@@ -12,13 +12,13 @@ interface SelectDayProps {
   selectedDate: SelectedDate;
   isLoading: boolean;
   currentAppointments:
-    | {
-        [key: string]: {
-          hour: string;
-          appointments: number;
-        };
-      }[]
-    | null;
+  | {
+    [key: string]: {
+      hour: string;
+      appointments: number;
+    };
+  }[]
+  | null;
 }
 
 export const SelectHour = ({
@@ -47,7 +47,7 @@ export const SelectHour = ({
           const isDisabled = currentAppointments.some(
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-expect-error
-            (appointment) => appointment.hour === hour.value && appointment.appointments >= 1
+            (appointment) => appointment.hour === hour.value && appointment.appointments >= 5
           );
 
           return (

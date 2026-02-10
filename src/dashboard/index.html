@@ -1,0 +1,669 @@
+%%[
+SET @deKey = "tb_lrp_hyalu_popup_store_appointments"
+
+SET @checkinTrue = LookupRows(@deKey, "checkin", "True")
+SET @totalCheckinTrue = RowCount(@checkinTrue)
+
+SET @checkinFalse = LookupRows(@deKey, "checkin", "False")
+SET @totalCheckinFalse = RowCount(@checkinFalse)
+
+SET @totalRegistros = Add(@totalCheckinTrue, @totalCheckinFalse)
+
+SET @appointments = LookupOrderedRows(@deKey, 100, "dataHorario ASC", "checkin", "True")
+SET @appointmentsFalse = LookupOrderedRows(@deKey, 100, "dataHorario ASC", "checkin", "False")
+
+SET @storeRJ = LookupRows(@deKey, "local", "Rio de Janeiro - Barra Shopping")
+SET @totalRJ = RowCount(@storeRJ)
+
+]%%
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180"
+    href="https://image.crm.loreal.com.br/lib/fe8d12727d62007876/m/1/e8ca0e9e-ac28-4a6d-bccc-4698704f9c23.jpg" />
+  <link rel="icon" type="image/jpg" sizes="32x32"
+    href="https://image.crm.loreal.com.br/lib/fe8d12727d62007876/m/1/e8ca0e9e-ac28-4a6d-bccc-4698704f9c23.jpg" />
+  <link rel="icon" type="image/jpg" sizes="16x16"
+    href="https://image.crm.loreal.com.br/lib/fe8d12727d62007876/m/1/e8ca0e9e-ac28-4a6d-bccc-4698704f9c23.jpg" />
+  <title>Hyalu Pop-up Store - Painel de Agendamentos</title>
+  <link rel="stylesheet" href="/hyalu-popup-store-dash.css">
+  <link rel="stylesheet" href="https://use.typekit.net/wyc8mfk.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-content">
+      <img src="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/a4059db2-043e-4de7-8870-1000f6ce6d99.png"
+        alt="L'Oréal Paris" class="logo">
+      <h1 class="title">Hyalu Pop-up Store</h1>
+      <p class="subtitle">Painel de Agendamentos</p>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <!-- Cards de Resumo -->
+    <section class="summary-section">
+      <h2 class="section-title">Resumo Geral</h2>
+      <div class="cards-container">
+        <div class="card card-total">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="card-content">
+            <span class="card-number">%%=v(@totalRegistros)=%%</span>
+            <span class="card-label">Total de Registros</span>
+          </div>
+        </div>
+
+        <div class="card card-checkin">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <div class="card-content">
+            <span class="card-number">%%=v(@totalCheckinTrue)=%%</span>
+            <span class="card-label">Check-ins Realizados</span>
+          </div>
+        </div>
+
+        <div class="card card-pending">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="card-content">
+            <span class="card-number">%%=v(@totalCheckinFalse)=%%</span>
+            <span class="card-label">Check-ins Pendentes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loja -->
+    <section class="stores-section">
+      <h2 class="section-title">Local</h2>
+      <div class="stores-container">
+        <div class="store-card">
+          <div class="store-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <div class="store-info">
+            <h3>Rio de Janeiro - Barra Shopping</h3>
+            <span class="store-count">%%=v(@totalRJ)=%% registros</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabla de Agendamientos con Check-in -->
+    <section class="appointments-section" id="checkin-section">
+      <h2 class="section-title">Agendamentos com Check-in Realizado <span class="count-badge"
+          id="checkin-count">%%=v(@totalCheckinTrue)=%%</span></h2>
+
+      <!-- Filtros para tabla Check-in -->
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label for="sort-checkin">Ordenar por:</label>
+          <select id="sort-checkin" class="filter-select" onchange="sortTable('checkin-table', this.value)">
+            <option value="date-desc">Data (Mais recente)</option>
+            <option value="date-asc">Data (Mais antiga)</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="search-checkin">&nbsp;</label>
+          <input type="text" id="search-checkin" class="filter-input" placeholder="🔍 Buscar..."
+            onkeyup="searchTable('checkin-table', this.value)">
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table-container scrollable">
+          <table class="appointments-table" id="checkin-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Data/Hora</th>
+                <th>Token</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              %%[
+              SET @rowsCheckin = LookupOrderedRows(@deKey, 2000, "dataHorario DESC", "checkin", "True")
+              SET @rowCountCheckin = RowCount(@rowsCheckin)
+
+              IF @rowCountCheckin > 0 THEN
+              FOR @i = 1 TO @rowCountCheckin DO
+              SET @row = Row(@rowsCheckin, @i)
+              SET @dataHorario = Field(@row, "dataHorario")
+              SET @nome = Field(@row, "nome")
+              SET @sobrenome = Field(@row, "sobrenome")
+              SET @email = Field(@row, "email")
+              SET @token = Field(@row, "token")
+              ]%%
+              <tr data-date="%%=v(@dataHorario)=%%">
+                <td>%%=v(@nome)=%% %%=v(@sobrenome)=%%</td>
+                <td>%%=v(@email)=%%</td>
+                <td><strong>%%=v(@dataHorario)=%%</strong></td>
+                <td>%%=v(@token)=%%</td>
+                <td><span class="status-badge status-checkin">Check-in ✓</span></td>
+              </tr>
+              %%[
+              NEXT @i
+              ENDIF
+              ]%%
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabla de Agendamientos Pendientes -->
+    <section class="appointments-section" id="pending-section">
+      <h2 class="section-title">Agendamentos Pendentes (Sem Check-in) <span class="count-badge pending-badge"
+          id="pending-count">%%=v(@totalCheckinFalse)=%%</span></h2>
+
+      <!-- Filtros para tabla Pendientes -->
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label for="sort-pending">Ordenar por:</label>
+          <select id="sort-pending" class="filter-select" onchange="sortTable('pending-table', this.value)">
+            <option value="date-desc">Data (Mais recente)</option>
+            <option value="date-asc">Data (Mais antiga)</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="search-pending">&nbsp;</label>
+          <input type="text" id="search-pending" class="filter-input" placeholder="🔍 Buscar..."
+            onkeyup="searchTable('pending-table', this.value)">
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table-container scrollable">
+          <table class="appointments-table" id="pending-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Data/Hora</th>
+                <th>Token</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              %%[
+              SET @rowsPending = LookupOrderedRows(@deKey, 2000, "dataHorario DESC", "checkin", "False")
+              SET @rowCountPending = RowCount(@rowsPending)
+
+              IF @rowCountPending > 0 THEN
+              FOR @j = 1 TO @rowCountPending DO
+              SET @rowP = Row(@rowsPending, @j)
+              SET @dataHorarioP = Field(@rowP, "dataHorario")
+              SET @nomeP = Field(@rowP, "nome")
+              SET @sobrenomeP = Field(@rowP, "sobrenome")
+              SET @emailP = Field(@rowP, "email")
+              SET @tokenP = Field(@rowP, "token")
+              ]%%
+              <tr data-date="%%=v(@dataHorarioP)=%%">
+                <td>%%=v(@nomeP)=%% %%=v(@sobrenomeP)=%%</td>
+                <td>%%=v(@emailP)=%%</td>
+                <td><strong>%%=v(@dataHorarioP)=%%</strong></td>
+                <td>%%=v(@tokenP)=%%</td>
+                <td><span class="status-badge status-pending">Pendente ⏳</span></td>
+              </tr>
+              %%[
+              NEXT @j
+              ENDIF
+              ]%%
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Estadísticas por Fecha - DINÁMICO -->
+    <section class="stats-section" id="stats-section">
+      <h2 class="section-title">Estatísticas por Data</h2>
+
+      <!-- Filtros para Estadísticas -->
+      <div class="filters-bar stats-filters">
+        <div class="filter-group">
+          <label for="filter-month">Filtrar por Mês:</label>
+          <select id="filter-month" class="filter-select" onchange="filterStats('month', this.value)">
+            <option value="all">Todos os Meses</option>
+            <option value="JAN">Janeiro</option>
+            <option value="FEV">Fevereiro</option>
+            <option value="MAR">Março</option>
+            <option value="ABR">Abril</option>
+            <option value="MAI">Maio</option>
+            <option value="JUN">Junho</option>
+            <option value="JUL">Julho</option>
+            <option value="AGO">Agosto</option>
+            <option value="SET">Setembro</option>
+            <option value="OUT">Outubro</option>
+            <option value="NOV">Novembro</option>
+            <option value="DEZ">Dezembro</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="sort-stats">Ordenar por:</label>
+          <select id="sort-stats" class="filter-select" onchange="sortStats(this.value)">
+            <option value="date-asc">Data (Crescente)</option>
+            <option value="date-desc">Data (Decrescente)</option>
+            <option value="total-desc">Total (Maior primeiro)</option>
+            <option value="total-asc">Total (Menor primeiro)</option>
+            <option value="checkin-desc">Check-ins (Maior primeiro)</option>
+            <option value="pending-desc">Pendentes (Maior primeiro)</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="sort-checkin">&nbsp;</label>
+          <button class="filter-btn" onclick="resetStatsFilters()">🔄 Resetar</button>
+        </div>
+        <div class="filter-stats-summary">
+          <span id="stats-visible-count">Mostrando todas as datas</span>
+        </div>
+      </div>
+
+      <div class="stats-wrapper">
+        <div class="stats-container">
+          %%[
+
+          SET @allRows = LookupOrderedRows(@deKey, 2000, "dataHorario ASC", "checkin", "True")
+          SET @allRowsFalse = LookupOrderedRows(@deKey, 2000, "dataHorario ASC", "checkin", "False")
+
+          /* Concatenar en una lista de fechas procesadas */
+          SET @processedDates = ""
+          SET @statsHTML = ""
+
+          /* Procesar registros con checkin True */
+          SET @totalRows = RowCount(@allRows)
+          FOR @k = 1 TO @totalRows DO
+          SET @currentRow = Row(@allRows, @k)
+          SET @currentDataHorario = Field(@currentRow, "dataHorario")
+
+          /* Extraer día y mes del formato DD/MM-HH:MM */
+          SET @currentDia = Field(@currentRow, "dia")
+          SET @dateKey = @currentDataHorario
+
+          /* Solo procesar si es una fecha que tiene el formato correcto */
+          IF Length(@currentDataHorario) > 0 AND IndexOf(@currentDataHorario, "/") > 0 THEN
+          /* Extraer mes del dataHorario (formato: DD/MM-HH:MM) */
+          SET @slashPos = IndexOf(@currentDataHorario, "/")
+          SET @dashPos = IndexOf(@currentDataHorario, "-")
+          SET @mesNum = Substring(@currentDataHorario, Add(@slashPos, 1), Subtract(@dashPos, Add(@slashPos, 1)))
+          SET @dateKey = Concat(@currentDia, "/", @mesNum)
+
+          /* Verificar si ya procesamos esta fecha */
+          IF IndexOf(@processedDates, Concat("|", @dateKey, "|")) == 0 THEN
+          SET @processedDates = Concat(@processedDates, "|", @dateKey, "|")
+
+          /* Contar registros para esta fecha */
+          SET @dateRows = LookupRows(@deKey, "dia", @currentDia)
+          SET @dateCount = RowCount(@dateRows)
+          SET @dateCheckin = 0
+          SET @datePending = 0
+
+          FOR @m = 1 TO @dateCount DO
+          SET @dateRow = Row(@dateRows, @m)
+          SET @dateCheckinVal = Field(@dateRow, "checkin")
+          SET @dateDataHorario = Field(@dateRow, "dataHorario")
+
+          /* Verificar que el mes también coincida */
+          SET @rowSlashPos = IndexOf(@dateDataHorario, "/")
+          SET @rowDashPos = IndexOf(@dateDataHorario, "-")
+          IF @rowSlashPos > 0 AND @rowDashPos > 0 THEN
+          SET @rowMes = Substring(@dateDataHorario, Add(@rowSlashPos, 1), Subtract(@rowDashPos, Add(@rowSlashPos, 1)))
+          IF @rowMes == @mesNum THEN
+          IF @dateCheckinVal == "True" THEN
+          SET @dateCheckin = Add(@dateCheckin, 1)
+          ELSE
+          SET @datePending = Add(@datePending, 1)
+          ENDIF
+          ENDIF
+          ENDIF
+          NEXT @m
+
+          SET @dateTotalFiltered = Add(@dateCheckin, @datePending)
+
+          /* Convertir número de mes a nombre */
+          SET @mesNome = "MÊS"
+          IF @mesNum == "01" THEN SET @mesNome = "JAN" ENDIF
+          IF @mesNum == "02" THEN SET @mesNome = "FEV" ENDIF
+          IF @mesNum == "03" THEN SET @mesNome = "MAR" ENDIF
+          IF @mesNum == "04" THEN SET @mesNome = "ABR" ENDIF
+          IF @mesNum == "05" THEN SET @mesNome = "MAI" ENDIF
+          IF @mesNum == "06" THEN SET @mesNome = "JUN" ENDIF
+          IF @mesNum == "07" THEN SET @mesNome = "JUL" ENDIF
+          IF @mesNum == "08" THEN SET @mesNome = "AGO" ENDIF
+          IF @mesNum == "09" THEN SET @mesNome = "SET" ENDIF
+          IF @mesNum == "10" THEN SET @mesNome = "OUT" ENDIF
+          IF @mesNum == "11" THEN SET @mesNome = "NOV" ENDIF
+          IF @mesNum == "12" THEN SET @mesNome = "DEZ" ENDIF
+          ]%%
+          <div class="stat-card" data-day="%%=v(@currentDia)=%%" data-month="%%=v(@mesNome)=%%"
+            data-month-num="%%=v(@mesNum)=%%" data-total="%%=v(@dateTotalFiltered)=%%"
+            data-checkin="%%=v(@dateCheckin)=%%" data-pending="%%=v(@datePending)=%%">
+            <div class="stat-date">
+              <span class="day">%%=v(@currentDia)=%%</span>
+              <span class="month">%%=v(@mesNome)=%%</span>
+            </div>
+            <div class="stat-details">
+              <div class="stat-row">
+                <span class="stat-label">Total Registros:</span>
+                <span class="stat-value total-value">%%=v(@dateTotalFiltered)=%%</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Check-ins:</span>
+                <span class="stat-value checkin">%%=v(@dateCheckin)=%%</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Pendentes:</span>
+                <span class="stat-value pending">%%=v(@datePending)=%%</span>
+              </div>
+            </div>
+          </div>
+          %%[
+          ENDIF
+          ENDIF
+          NEXT @k
+
+          /* También procesar registros con checkin False para capturar fechas que solo tienen pendientes */
+          SET @totalRowsFalse = RowCount(@allRowsFalse)
+          FOR @n = 1 TO @totalRowsFalse DO
+          SET @currentRowF = Row(@allRowsFalse, @n)
+          SET @currentDataHorarioF = Field(@currentRowF, "dataHorario")
+          SET @currentDiaF = Field(@currentRowF, "dia")
+
+          IF Length(@currentDataHorarioF) > 0 AND IndexOf(@currentDataHorarioF, "/") > 0 THEN
+          SET @slashPosF = IndexOf(@currentDataHorarioF, "/")
+          SET @dashPosF = IndexOf(@currentDataHorarioF, "-")
+          SET @mesNumF = Substring(@currentDataHorarioF, Add(@slashPosF, 1), Subtract(@dashPosF, Add(@slashPosF, 1)))
+          SET @dateKeyF = Concat(@currentDiaF, "/", @mesNumF)
+
+          IF IndexOf(@processedDates, Concat("|", @dateKeyF, "|")) == 0 THEN
+          SET @processedDates = Concat(@processedDates, "|", @dateKeyF, "|")
+
+          SET @dateRowsF = LookupRows(@deKey, "dia", @currentDiaF)
+          SET @dateCountF = RowCount(@dateRowsF)
+          SET @dateCheckinF = 0
+          SET @datePendingF = 0
+
+          FOR @p = 1 TO @dateCountF DO
+          SET @dateRowF = Row(@dateRowsF, @p)
+          SET @dateCheckinValF = Field(@dateRowF, "checkin")
+          SET @dateDataHorarioF = Field(@dateRowF, "dataHorario")
+
+          SET @rowSlashPosF = IndexOf(@dateDataHorarioF, "/")
+          SET @rowDashPosF = IndexOf(@dateDataHorarioF, "-")
+          IF @rowSlashPosF > 0 AND @rowDashPosF > 0 THEN
+          SET @rowMesF = Substring(@dateDataHorarioF, Add(@rowSlashPosF, 1), Subtract(@rowDashPosF, Add(@rowSlashPosF,
+          1)))
+          IF @rowMesF == @mesNumF THEN
+          IF @dateCheckinValF == "True" THEN
+          SET @dateCheckinF = Add(@dateCheckinF, 1)
+          ELSE
+          SET @datePendingF = Add(@datePendingF, 1)
+          ENDIF
+          ENDIF
+          ENDIF
+          NEXT @p
+
+          SET @dateTotalFilteredF = Add(@dateCheckinF, @datePendingF)
+
+          SET @mesNomeF = "MÊS"
+          IF @mesNumF == "01" THEN SET @mesNomeF = "JAN" ENDIF
+          IF @mesNumF == "02" THEN SET @mesNomeF = "FEV" ENDIF
+          IF @mesNumF == "03" THEN SET @mesNomeF = "MAR" ENDIF
+          IF @mesNumF == "04" THEN SET @mesNomeF = "ABR" ENDIF
+          IF @mesNumF == "05" THEN SET @mesNomeF = "MAI" ENDIF
+          IF @mesNumF == "06" THEN SET @mesNomeF = "JUN" ENDIF
+          IF @mesNumF == "07" THEN SET @mesNomeF = "JUL" ENDIF
+          IF @mesNumF == "08" THEN SET @mesNomeF = "AGO" ENDIF
+          IF @mesNumF == "09" THEN SET @mesNomeF = "SET" ENDIF
+          IF @mesNumF == "10" THEN SET @mesNomeF = "OUT" ENDIF
+          IF @mesNumF == "11" THEN SET @mesNomeF = "NOV" ENDIF
+          IF @mesNumF == "12" THEN SET @mesNomeF = "DEZ" ENDIF
+          ]%%
+          <div class="stat-card" data-day="%%=v(@currentDiaF)=%%" data-month="%%=v(@mesNomeF)=%%"
+            data-month-num="%%=v(@mesNumF)=%%" data-total="%%=v(@dateTotalFilteredF)=%%"
+            data-checkin="%%=v(@dateCheckinF)=%%" data-pending="%%=v(@datePendingF)=%%">
+            <div class="stat-date">
+              <span class="day">%%=v(@currentDiaF)=%%</span>
+              <span class="month">%%=v(@mesNomeF)=%%</span>
+            </div>
+            <div class="stat-details">
+              <div class="stat-row">
+                <span class="stat-label">Total Registros:</span>
+                <span class="stat-value total-value">%%=v(@dateTotalFilteredF)=%%</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Check-ins:</span>
+                <span class="stat-value checkin">%%=v(@dateCheckinF)=%%</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Pendentes:</span>
+                <span class="stat-value pending">%%=v(@datePendingF)=%%</span>
+              </div>
+            </div>
+          </div>
+          %%[
+          ENDIF
+          ENDIF
+          NEXT @n
+          ]%%
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>© 2026 Vichy Pop-up Store</p>
+      <p class="footer-subtitle">Painel de Agendamentos</p>
+    </div>
+  </footer>
+
+  <script>
+    // ===== BÚSQUEDA EN TABLAS =====
+    function searchTable(tableId, searchTerm) {
+      const table = document.getElementById(tableId);
+      const rows = table.querySelectorAll('tbody tr');
+      const term = searchTerm.toLowerCase();
+      let visibleCount = 0;
+
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        if (text.includes(term)) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      // Actualizar contador
+      const countId = tableId === 'checkin-table' ? 'checkin-count' : 'pending-count';
+      const countEl = document.getElementById(countId);
+      if (countEl) {
+        const originalCount = countEl.getAttribute('data-original') || countEl.textContent;
+        if (!countEl.getAttribute('data-original')) {
+          countEl.setAttribute('data-original', originalCount);
+        }
+        countEl.textContent = searchTerm === '' ? originalCount : visibleCount;
+      }
+    }
+
+    // ===== ORDENAR TABLAS =====
+    function sortTable(tableId, sortType) {
+      const table = document.getElementById(tableId);
+      const tbody = table.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+
+      rows.sort((a, b) => {
+        let valA, valB;
+
+        switch (sortType) {
+          case 'date-asc':
+          case 'date-desc':
+            valA = a.getAttribute('data-date') || '';
+            valB = b.getAttribute('data-date') || '';
+            // Convertir DD/MM-HH:MM a formato comparable
+            valA = convertDateForSort(valA);
+            valB = convertDateForSort(valB);
+            return sortType === 'date-asc' ? valA - valB : valB - valA;
+
+          case 'store-asc':
+          case 'store-desc':
+            valA = a.getAttribute('data-store') || '';
+            valB = b.getAttribute('data-store') || '';
+            return sortType === 'store-asc'
+              ? valA.localeCompare(valB)
+              : valB.localeCompare(valA);
+
+          default:
+            return 0;
+        }
+      });
+
+      rows.forEach(row => tbody.appendChild(row));
+    }
+
+    // Convertir fecha DD/MM-HH:MM a número para ordenar
+    function convertDateForSort(dateStr) {
+      if (!dateStr) return 0;
+      const parts = dateStr.split('/');
+      if (parts.length < 2) return 0;
+      const day = parseInt(parts[0]) || 0;
+      const monthTime = parts[1].split('-');
+      const month = parseInt(monthTime[0]) || 0;
+      const time = monthTime[1] ? monthTime[1].replace(':', '') : '0000';
+      return (month * 1000000) + (day * 10000) + parseInt(time);
+    }
+
+    // ===== FILTROS PARA ESTADÍSTICAS =====
+    function filterStats(filterType, value) {
+      const cards = document.querySelectorAll('.stats-container .stat-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        if (value === 'all') {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          const month = card.getAttribute('data-month');
+          if (month === value) {
+            card.style.display = '';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+
+      updateStatsCount(visibleCount, cards.length);
+    }
+
+    // ===== ORDENAR ESTADÍSTICAS =====
+    function sortStats(sortType) {
+      const container = document.querySelector('.stats-container');
+      const cards = Array.from(container.querySelectorAll('.stat-card'));
+
+      cards.sort((a, b) => {
+        let valA, valB;
+
+        switch (sortType) {
+          case 'date-asc':
+          case 'date-desc':
+            const monthA = parseInt(a.getAttribute('data-month-num')) || 0;
+            const dayA = parseInt(a.getAttribute('data-day')) || 0;
+            const monthB = parseInt(b.getAttribute('data-month-num')) || 0;
+            const dayB = parseInt(b.getAttribute('data-day')) || 0;
+            valA = (monthA * 100) + dayA;
+            valB = (monthB * 100) + dayB;
+            return sortType === 'date-asc' ? valA - valB : valB - valA;
+
+          case 'total-desc':
+          case 'total-asc':
+            valA = parseInt(a.getAttribute('data-total')) || 0;
+            valB = parseInt(b.getAttribute('data-total')) || 0;
+            return sortType === 'total-desc' ? valB - valA : valA - valB;
+
+          case 'checkin-desc':
+            valA = parseInt(a.getAttribute('data-checkin')) || 0;
+            valB = parseInt(b.getAttribute('data-checkin')) || 0;
+            return valB - valA;
+
+          case 'pending-desc':
+            valA = parseInt(a.getAttribute('data-pending')) || 0;
+            valB = parseInt(b.getAttribute('data-pending')) || 0;
+            return valB - valA;
+
+          default:
+            return 0;
+        }
+      });
+
+      cards.forEach(card => container.appendChild(card));
+    }
+
+    // ===== RESETEAR FILTROS DE ESTADÍSTICAS =====
+    function resetStatsFilters() {
+      document.getElementById('filter-month').value = 'all';
+      document.getElementById('sort-stats').value = 'date-asc';
+
+      const cards = document.querySelectorAll('.stats-container .stat-card');
+      cards.forEach(card => card.style.display = '');
+
+      sortStats('date-asc');
+
+      updateStatsCount(cards.length, cards.length);
+    }
+
+    // ===== ACTUALIZAR CONTADOR DE ESTADÍSTICAS =====
+    function updateStatsCount(visible, total) {
+      const countEl = document.getElementById('stats-visible-count');
+      if (countEl) {
+        if (visible === total) {
+          countEl.textContent = `Mostrando todas as ${total} datas`;
+        } else {
+          countEl.textContent = `Mostrando ${visible} de ${total} datas`;
+        }
+      }
+    }
+
+    // ===== INICIALIZACIÓN =====
+    document.addEventListener('DOMContentLoaded', function () {
+      const totalCards = document.querySelectorAll('.stats-container .stat-card').length;
+      updateStatsCount(totalCards, totalCards);
+      sortStats('date-asc');
+    });
+  </script>
+</body>
+
+</html>

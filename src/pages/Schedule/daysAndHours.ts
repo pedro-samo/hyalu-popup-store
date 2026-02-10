@@ -10,11 +10,6 @@ export const days = [
     value: "19/02"
   },
   {
-    day: "sexta-feira",
-    label: "20 FEV",
-    value: "20/02"
-  },
-  {
     day: "sábado",
     label: "21 FEV",
     value: "21/02"
@@ -23,11 +18,6 @@ export const days = [
     day: "domingo",
     label: "22 FEV",
     value: "22/02"
-  },
-  {
-    day: "segunda-feira",
-    label: "23 FEV",
-    value: "23/02"
   },
   {
     day: "terça-feira",
@@ -214,25 +204,5 @@ export const hours = [
   {
     label: "19:00",
     value: "19:00"
-  },
-  {
-    label: "19:30",
-    value: "19:30"
-  },
-  {
-    label: "20:00",
-    value: "20:00"
-  },
-  {
-    label: "20:30",
-    value: "20:30"
-  },
-  {
-    label: "21:00",
-    value: "21:00"
-  },
-  {
-    label: "21:30",
-    value: "21:30"
   }
 ];

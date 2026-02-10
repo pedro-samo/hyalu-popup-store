@@ -1,0 +1,763 @@
+:root {
+  --brand-primary: #599de0;
+  --brand-secondary: #3f7fc4;
+  --brand-accent: #82b9de;
+  --brand-dark: #102747;
+  --brand-deep: #081426;
+  --brand-light: #eff6ff;
+  --brand-highlight: #cfe3ff;
+
+  --primary-red: var(--brand-primary);
+  --secondary-red: var(--brand-secondary);
+  --accent-red: var(--brand-accent);
+  --dark-red: var(--brand-dark);
+  --deep-red: var(--brand-deep);
+  --light-red: var(--brand-light);
+  --accent-gold: var(--brand-highlight);
+  --accent-gold-light: #f5f8ff;
+  --success-green: #2e7d32;
+  --success-green-light: #e8f5e9;
+  --warning-orange: #f57c00;
+  --warning-orange-light: #fff3e0;
+  --text-dark: #171f2b;
+  --text-light: #5b6573;
+  --white: #ffffff;
+  --gray-100: #f2f5fa;
+  --gray-200: #e0e7ef;
+  --gray-300: #d0d9e4;
+  --shadow-sm: 0 2px 4px rgba(16, 39, 71, 0.12);
+  --shadow-md: 0 4px 12px rgba(16, 39, 71, 0.16);
+  --shadow-lg: 0 8px 24px rgba(8, 20, 38, 0.22);
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-red) var(--white);
+}
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 13px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--accent-red);
+  border-radius: 10px;
+  border: 3px solid var(--white);
+}
+
+body {
+  font-family: "Jost", sans-serif;
+  background: linear-gradient(135deg, var(--light-red) 0%, var(--white) 100%);
+  color: var(--text-dark);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 50%, var(--secondary-red) 100%);
+  padding: 30px 20px;
+  box-shadow: var(--shadow-lg);
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo {
+  height: 70px;
+  margin-bottom: 15px;
+  filter: brightness(0) invert(1);
+}
+
+.title {
+  font-family: "Jost", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-family: "Jost", sans-serif;
+  font-size: 1.1rem;
+  color: var(--accent-gold);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.section-title {
+  font-family: "Jost", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-red);
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--accent-red);
+  display: inline-block;
+}
+
+/* ===== SUMMARY CARDS ===== */
+.summary-section {
+  margin-bottom: 50px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: var(--transition);
+  border-left: 5px solid transparent;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-total {
+  border-left-color: var(--primary-red);
+}
+
+.card-total .card-icon {
+  background: var(--light-red);
+  color: var(--primary-red);
+}
+
+.card-checkin {
+  border-left-color: var(--success-green);
+}
+
+.card-checkin .card-icon {
+  background: var(--success-green-light);
+  color: var(--success-green);
+}
+
+.card-pending {
+  border-left-color: var(--warning-orange);
+}
+
+.card-pending .card-icon {
+  background: var(--warning-orange-light);
+  color: var(--warning-orange);
+}
+
+.card-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-number {
+  font-family: "Jost", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+.card-label {
+  font-family: "Jost", sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+/* ===== STORES SECTION ===== */
+.stores-section {
+  margin-bottom: 50px;
+}
+
+.stores-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.store-card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: var(--transition);
+  border: 2px solid var(--gray-200);
+}
+
+.store-card:hover {
+  border-color: var(--accent-red);
+  box-shadow: var(--shadow-lg);
+}
+
+.store-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 50%, var(--secondary-red) 100%);
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.store-info h3 {
+  font-family: "Jost", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+}
+
+.store-count {
+  font-family: "Jost", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-red);
+}
+
+/* ===== APPOINTMENTS TABLE ===== */
+.appointments-section {
+  margin-bottom: 50px;
+}
+
+/* Wrapper para scroll */
+.table-wrapper {
+  position: relative;
+}
+
+.table-container {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.table-container.scrollable {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+/* Custom scrollbar */
+.table-container.scrollable::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-container.scrollable::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: 4px;
+}
+
+.table-container.scrollable::-webkit-scrollbar-thumb {
+  background: var(--primary-red);
+  border-radius: 4px;
+}
+
+.table-container.scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-red);
+}
+
+.table-container.scrollable .appointments-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.count-badge {
+  background: var(--success-green);
+  color: var(--white);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.count-badge.pending-badge {
+  background: var(--warning-orange);
+}
+
+.appointments-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.appointments-table thead {
+  background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 50%, var(--secondary-red) 100%);
+}
+
+.appointments-table th {
+  font-family: "Jost", sans-serif;
+  padding: 18px 15px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--white);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.appointments-table td {
+  font-family: "Jost", sans-serif;
+  padding: 15px;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+.appointments-table tbody tr {
+  transition: var(--transition);
+}
+
+.appointments-table tbody tr:hover {
+  background: var(--light-red);
+}
+
+.appointments-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.token-badge {
+  background: var(--light-red);
+  color: var(--primary-red);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  display: inline-block;
+}
+
+.status-checkin {
+  background: var(--success-green-light);
+  color: var(--success-green);
+}
+
+.status-pending {
+  background: var(--warning-orange-light);
+  color: var(--warning-orange);
+}
+
+.stats-section {
+  margin-bottom: 50px;
+}
+
+.stats-wrapper {
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.stats-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.stats-wrapper::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: 4px;
+}
+
+.stats-wrapper::-webkit-scrollbar-thumb {
+  background: var(--primary-red);
+  border-radius: 4px;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  min-width: max-content;
+}
+
+.stat-card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stat-date {
+  background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 50%, var(--secondary-red) 100%);
+  padding: 20px;
+  text-align: center;
+  color: var(--white);
+}
+
+.stat-date .day {
+  font-family: "Jost", sans-serif;
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-date .month {
+  font-family: "Jost", sans-serif;
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+
+.stat-details {
+  padding: 20px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  font-family: "Jost", sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.stat-value {
+  font-family: "Jost", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.stat-value.checkin {
+  color: var(--success-green);
+}
+
+.stat-value.pending {
+  color: var(--warning-orange);
+}
+
+.footer {
+  background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 50%, var(--secondary-red) 100%);
+  padding: 30px 20px;
+  margin-top: 50px;
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer p {
+  font-family: "Jost", sans-serif;
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.footer-subtitle {
+  color: var(--accent-gold) !important;
+  margin-top: 5px;
+  font-size: 0.85rem !important;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card-number {
+    font-size: 2rem;
+  }
+
+  .appointments-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .appointments-table th,
+  .appointments-table td {
+    padding: 12px 10px;
+    font-size: 0.8rem;
+  }
+
+  .stores-container {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 20px 15px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .main-content {
+    padding: 20px 15px;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+.store-card,
+.stat-card,
+.table-container {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.filters-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  background: var(--white);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 20px;
+  border: 1px solid var(--gray-200);
+}
+
+.filters-bar.stats-filters {
+  background: linear-gradient(135deg, var(--light-red) 0%, var(--white) 100%);
+  border-color: var(--primary-red);
+  border-width: 2px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter-group label {
+  font-family: "Jost", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-red);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filter-select {
+  font-family: "Jost", sans-serif;
+  padding: 10px 15px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background: var(--white);
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 180px;
+}
+
+.filter-select:hover {
+  border-color: var(--accent-red);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 3px rgba(152, 31, 34, 0.1);
+}
+
+.filter-input {
+  font-family: "Jost", sans-serif;
+  padding: 10px 15px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background: var(--white);
+  transition: var(--transition);
+  min-width: 200px;
+}
+
+.filter-input:hover {
+  border-color: var(--accent-red);
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 3px rgba(152, 31, 34, 0.1);
+}
+
+.filter-input::placeholder {
+  color: var(--text-light);
+}
+
+.filter-btn {
+  font-family: "Jost", sans-serif;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 50%, var(--secondary-red) 100%);
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.filter-btn:active {
+  transform: translateY(0);
+}
+
+.filter-stats-summary {
+  font-family: "Jost", sans-serif;
+  margin-left: auto;
+  padding: 8px 15px;
+  background: var(--light-red);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--primary-red);
+}
+
+/* Responsive filters */
+@media (max-width: 768px) {
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .filter-select,
+  .filter-input {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .filter-stats-summary {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+.stat-card[style*="display: none"] {
+  display: none !important;
+}
+
+tr[style*="display: none"] {
+  display: none !important;
+}
