@@ -607,13 +607,13 @@
                                                     <tr>
                                                       <td class="stylingblock-content-wrapper camarker-inner">%%[
                                                         SET @token =
-                                                        Lookup("tb_vichy_popup_store_appointments","token","email",[EmailAddress])
+                                                        Lookup("tb_lrp_hyalu_popup_store_appointments","token","email",[EmailAddress])
                                                         SET @linkQrCode =
-                                                        Lookup("tb_vichy_popup_store_appointments","linkQrCode","email",[EmailAddress])
+                                                        Lookup("tb_lrp_hyalu_popup_store_appointments","linkQrCode","email",[EmailAddress])
                                                         SET @horario =
-                                                        Lookup("tb_vichy_popup_store_appointments","hora","email",[EmailAddress])
+                                                        Lookup("tb_lrp_hyalu_popup_store_appointments","hora","email",[EmailAddress])
                                                         SET @diaRaw =
-                                                        Lookup("tb_vichy_popup_store_appointments","dia","email",[EmailAddress])
+                                                        Lookup("tb_lrp_hyalu_popup_store_appointments","dia","email",[EmailAddress])
                                                         IF @diaRaw == "Quinta - 21/08" THEN
                                                         SET @dia = "21/08/2025 (Quinta-Feira)"
                                                         ELSEIF @diaRaw == "Sexta – 22/08" THEN
@@ -624,13 +624,13 @@
                                                         ]%%
                                                         %%[
                                                         SET @nome =
-                                                        Lookup("tb_vichy_popup_store_appointments","nome","email",[EmailAddress])
+                                                        Lookup("tb_lrp_hyalu_popup_store_appointments","nome","email",[EmailAddress])
                                                         IF IndexOf(@nome, " ") > 1 THEN
                                                         SET @nome1 = Substring(@nome, 1,Subtract(IndexOf(@nome, " "),
                                                         1))
                                                         ELSE
                                                         SET @nome1 =
-                                                        Lookup("tb_vichy_popup_store_appointments","NOME","EMAIL",[EmailAddress])
+                                                        Lookup("tb_lrp_hyalu_popup_store_appointments","NOME","EMAIL",[EmailAddress])
                                                         ENDIF
                                                         ]%%
                                                         <!-- Background with bubbles -->
