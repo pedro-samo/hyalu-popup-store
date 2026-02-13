@@ -578,7 +578,7 @@
       </tr>
       <tr>
         <td align="center">
-          <table cellspacing="0" cellpadding="0" border="0" width="400" class="container" align="center">
+          <table cellspacing="0" cellpadding="0" border="0" width="450" class="container" align="center">
             <tr>
               <td>
                 <table class="tb_properties border_style" style="background-color:#FFFFFF;" cellspacing="0"
@@ -633,157 +633,184 @@
                                                         Lookup("tb_vichy_popup_store_appointments","NOME","EMAIL",[EmailAddress])
                                                         ENDIF
                                                         ]%%
-                                                        <table bgcolor="#ffffff" cellpadding="0" cellspacing="0"
+                                                        <!-- Background with bubbles -->
+                                                        <table bgcolor="#d9eef7" cellpadding="0" cellspacing="0"
                                                           border="0" align="center"
-                                                          style="width: 400px; max-width: 400px; margin: auto; background-color: #ffffff;"
-                                                          width="400">
+                                                          style="width: 450px; max-width: 450px; margin: auto; background-color: #d9eef7;"
+                                                          width="450">
+                                                          <!-- La Roche-Posay Logo -->
                                                           <tr>
-                                                            <td align="left" valign="top">
+                                                            <td align="center" valign="top"
+                                                              style="padding: 20px 20px 10px 20px;">
+                                                              <img
+                                                                src="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/a4059db2-043e-4de7-8870-1000f6ce6d99.png"
+                                                                width="140" border="0" async="true"
+                                                                style="display:block; max-width: 140px;"
+                                                                title="La Roche-Posay Logo">
+                                                            </td>
+                                                          </tr>
+                                                          <!-- POP UP HYALU B5 Title -->
+                                                          <tr>
+                                                            <td align="center" valign="top" style="padding: 8px 20px;">
+                                                              <img
+                                                                src="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/bb9ec478-5537-410f-a913-a9566f295f03.png"
+                                                                width="200" border="0" async="true"
+                                                                style="display:block; max-width: 200px;"
+                                                                title="POP UP HYALU B5">
+                                                            </td>
+                                                          </tr>
+                                                          <!-- Divider Line -->
+                                                          <tr>
+                                                            <td align="center" style="padding: 15px 40px;">
                                                               <table cellpadding="0" cellspacing="0" border="0"
-                                                                width="100%" align="center">
+                                                                width="100%">
                                                                 <tr>
-                                                                  <td align="center" valign="middle">
+                                                                  <td
+                                                                    style="border-top: 2px solid #3b8fc2; font-size: 1px; line-height: 1px;">
+                                                                    &nbsp;</td>
+                                                                </tr>
+                                                              </table>
+                                                            </td>
+                                                          </tr>
+                                                          <!-- Confirmation Message -->
+                                                          <tr>
+                                                            <td align="center" valign="top"
+                                                              style="padding: 10px 30px 20px 30px;">
+                                                              <p
+                                                                style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #333333; margin: 0; line-height: 1.5;">
+                                                                Olá, seu agendamento para a <strong>POP UP</strong> de
+                                                                <strong style="color: #3b8fc2;">HYALU</strong> <span
+                                                                  style="color: #3b8fc2;">B5</span><br>
+                                                                está confirmado para:
+                                                              </p>
+                                                            </td>
+                                                          </tr>
+                                                          <!-- Date, Time, Address with Map -->
+                                                          <tr>
+                                                            <td align="center" valign="top"
+                                                              style="padding: 0 20px 20px 20px;">
+                                                              <table cellpadding="0" cellspacing="0" border="0"
+                                                                width="100%">
+                                                                <tr>
+                                                                  <!-- Left Side - Info -->
+                                                                  <td align="left" valign="top"
+                                                                    style="width: 55%; padding-right: 15px;">
+                                                                    <!-- Dia -->
+                                                                    <table cellpadding="0" cellspacing="0" border="0"
+                                                                      width="100%">
+                                                                      <tr>
+                                                                        <td
+                                                                          style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #000000; padding-bottom: 8px;">
+                                                                          <strong>Dia:</strong> <span
+                                                                            style="color: #3b8fc2;">%%=v(@dia)=%%</span>
+                                                                        </td>
+                                                                      </tr>
+                                                                    </table>
+                                                                    <!-- Horário -->
+                                                                    <table cellpadding="0" cellspacing="0" border="0"
+                                                                      width="100%">
+                                                                      <tr>
+                                                                        <td
+                                                                          style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #000000; padding-bottom: 8px;">
+                                                                          <strong
+                                                                            style="color: #3b8fc2;">Horário:</strong>
+                                                                          <span
+                                                                            style="color: #3b8fc2;">%%=v(@horario)=%%</span>
+                                                                        </td>
+                                                                      </tr>
+                                                                    </table>
+                                                                    <!-- Endereço -->
+                                                                    <table cellpadding="0" cellspacing="0" border="0"
+                                                                      width="100%">
+                                                                      <tr>
+                                                                        <td
+                                                                          style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #000000; padding-bottom: 5px;">
+                                                                          <strong>Endereço:</strong> <span
+                                                                            style="font-weight: bold;">POP UP
+                                                                            HYALU</span>
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td
+                                                                          style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #3b8fc2; padding-bottom: 5px; font-weight: bold;">
+                                                                          B5
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td
+                                                                          style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333; line-height: 1.4;">
+                                                                          Barra Shopping<br>
+                                                                          Avenida das Américas, 4.666<br>
+                                                                          Barra da Tijuca, Rio de Janeiro
+                                                                        </td>
+                                                                      </tr>
+                                                                    </table>
+                                                                  </td>
+                                                                  <!-- Right Side - Map -->
+                                                                  <td align="right" valign="top" style="width: 45%;">
                                                                     <img
-                                                                      src="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/c39720c8-bf6a-404a-9940-1f07ea0355f9.jpg"
-                                                                      width="100%" border="0" async="true"
-                                                                      style="display:block"
-                                                                      title="Background Recuperar Senha">
+                                                                      src="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/94b0ff8e-78dd-4ad0-b34f-3a01d85af8a4.png"
+                                                                      width="150" border="0" async="true"
+                                                                      style="display:block; max-width: 150px; border-radius: 8px;"
+                                                                      title="Mapa POP UP HYALU B5">
                                                                   </td>
                                                                 </tr>
                                                               </table>
                                                             </td>
                                                           </tr>
-                                                        </table>
-                                                        <table bgcolor="#ffffff" cellpadding="0" cellspacing="0"
-                                                          border="0" align="center"
-                                                          style="width: 400px; max-width: 400px; margin: auto; background-color: #ffffff;"
-                                                          width="400">
+                                                          <!-- QR Code and Token Section -->
                                                           <tr>
-                                                            <td align="left" valign="top">
+                                                            <td align="center" valign="top" style="padding: 20px;">
                                                               <table cellpadding="0" cellspacing="0" border="0"
-                                                                width="100%" align="center">
+                                                                width="100%">
                                                                 <tr>
-                                                                  <td align="left" valign="middle"
-                                                                    style="font-family: Arial, Helvetica, sans-serif; padding: 20px 0; font-size: 18px; color: #000000;">
-                                                                    %%=v(@nome1)=%%, </br> seu agendamento para a pop-up
-                                                                    de <span style="color: #599de0;">Hyalu B5</span>
-                                                                    está confirmado para:
-                                                                  </td>
-                                                                </tr>
-                                                              </table>
-                                                            </td>
-                                                          </tr>
-                                                        </table>
-                                                        <!-- Appointment Confirmation Card -->
-                                                        <table bgcolor="#ffffff" cellpadding="0" cellspacing="0"
-                                                          border="0" align="center"
-                                                          style="width: 400px; max-width: 400px; margin: auto; background-color: #ffffff;"
-                                                          width="400">
-                                                          <tr>
-                                                            <td align="center" valign="top">
-                                                              <!-- Card Container -->
-                                                              <table cellpadding="0" cellspacing="0" border="0"
-                                                                style="width: 100%; max-width: 400px;">
-                                                                <tr>
-                                                                  <td align="center" valign="top"
-                                                                    style="padding: 20px;">
-                                                                    <!-- Date -->
-                                                                    <table cellpadding="0" cellspacing="0" border="0"
-                                                                      width="100%">
-                                                                      <tr>
-                                                                        <td align="left"
-                                                                          style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #599de0; padding-bottom: 5px; font-weight: bold; width: 40px;">
-                                                                          <strong>Dia:</strong>
-                                                                        </td>
-                                                                        <td align="left"
-                                                                          style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #599de0; padding-bottom: 5px;">
-                                                                          %%=v(@dia)=%%
-                                                                        </td>
-                                                                      </tr>
-                                                                    </table>
-
-                                                                    <!-- Time -->
-                                                                    <table cellpadding="0" cellspacing="0" border="0"
-                                                                      width="100%">
-                                                                      <tr>
-                                                                        <td align="left"
-                                                                          style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #599de0; padding-bottom: 5px; font-weight: bold; width: 70px;">
-                                                                          <strong>Horário:</strong>
-                                                                        </td>
-                                                                        <td align="left"
-                                                                          style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #599de0;  padding-bottom: 5px;">
-                                                                          %%=v(@horario)=%%
-                                                                        </td>
-                                                                      </tr>
-                                                                    </table>
-                                                                  </td>
-                                                                </tr>
-                                                              </table>
-                                                            </td>
-                                                          </tr>
-                                                        </table>
-                                                        <!-- QR Code and Token Section -->
-                                                        <table bgcolor="#ffffff" cellpadding="0" cellspacing="0"
-                                                          border="0" align="center"
-                                                          style="width: 400px; max-width: 400px; margin: auto; background-color: #ffffff;"
-                                                          width="400">
-                                                          <tr>
-                                                            <td align="center" valign="top" style="padding: 20px 0;">
-                                                              <!-- Main Container -->
-                                                              <table cellpadding="0" cellspacing="0" border="0"
-                                                                width="400px" style="width: 100%; max-width: 400px;">
-                                                                <tr>
-                                                                  <!-- Left Section - QR Code -->
-                                                                  <td align="center" valign="top"
-                                                                    style="width: 200px; padding: 10px;">
-                                                                    <!-- QR Code Label -->
-                                                                    <table cellpadding="0" cellspacing="0" border="0"
-                                                                      width="200px">
+                                                                  <!-- QR Code Section -->
+                                                                  <td align="center" valign="top" style="width: 50%;">
+                                                                    <table cellpadding="0" cellspacing="0" border="0">
                                                                       <tr>
                                                                         <td align="center"
-                                                                          style="padding-bottom: 10px;">
+                                                                          style="padding-bottom: 15px;">
                                                                           <span
-                                                                            style="background-color: #3f7fbe; color: white; padding: 8px 16px; border-radius: 5px; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold;">
-                                                                            SEU QRCODE:
+                                                                            style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; color: #333333; text-transform: uppercase; letter-spacing: 1px;">
+                                                                            SEU QR CODE:
                                                                           </span>
                                                                         </td>
                                                                       </tr>
                                                                       <tr>
-                                                                        <td align="center" style="padding-top: 15px;">
-                                                                          <img src="%%=RedirectTo(@linkQrCode)=%%"
-                                                                            width="150" border="0" async="true"
-                                                                            style="display:block; max-width: 150px;"
-                                                                            title="QR Code">
+                                                                        <td align="center">
+                                                                          <table cellpadding="0" cellspacing="0"
+                                                                            border="0"
+                                                                            style="background-color: #ffffff; border: 1px solid #cccccc;">
+                                                                            <tr>
+                                                                              <td style="padding: 8px;">
+                                                                                <img src="%%=RedirectTo(@linkQrCode)=%%"
+                                                                                  width="100" height="100" border="0"
+                                                                                  async="true"
+                                                                                  style="display:block; max-width: 100px;"
+                                                                                  title="QR Code">
+                                                                              </td>
+                                                                            </tr>
+                                                                          </table>
                                                                         </td>
                                                                       </tr>
                                                                     </table>
                                                                   </td>
-
-                                                                  <!-- Vertical Divider -->
-                                                                  <td align="center" valign="middle"
-                                                                    style="width: 1px; background-color: #599de0; height: 170px;">
-                                                                    &nbsp;
-                                                                  </td>
-
-                                                                  <!-- Right Section - Token -->
-                                                                  <td align="center" valign="top"
-                                                                    style="width: 200px; padding: 10px;">
-                                                                    <!-- Token Label -->
-                                                                    <table cellpadding="0" cellspacing="0" border="0"
-                                                                      width="200px">
+                                                                  <!-- Token Section -->
+                                                                  <td align="center" valign="top" style="width: 50%;">
+                                                                    <table cellpadding="0" cellspacing="0" border="0">
                                                                       <tr>
                                                                         <td align="center"
-                                                                          style="padding-bottom: 10px;">
+                                                                          style="padding-bottom: 15px;">
                                                                           <span
-                                                                            style="background-color: #3f7fbe; color: white; padding: 8px 16px; border-radius: 5px; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold;">
-                                                                            SEU TOKEN:
+                                                                            style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; color: #333333; text-transform: uppercase; letter-spacing: 1px;">
+                                                                            SEU CÓDIGO:
                                                                           </span>
                                                                         </td>
                                                                       </tr>
                                                                       <tr>
                                                                         <td align="center" style="padding-top: 30px;">
                                                                           <span
-                                                                            style="font-family: Arial, Helvetica, sans-serif; font-size: 22px; font-weight: bold; color: #000000;">
+                                                                            style="font-family: Arial, Helvetica, sans-serif; font-size: 28px; font-weight: bold; color: #000000;">
                                                                             %%=v(@token)=%%
                                                                           </span>
                                                                         </td>
@@ -794,26 +821,36 @@
                                                               </table>
                                                             </td>
                                                           </tr>
-                                                        </table>
-
-                                                        <table bgcolor="#ffffff" cellpadding="0" cellspacing="0"
-                                                          border="0" align="center"
-                                                          style="width: 400px; max-width: 400px; margin: auto; background-color: #ffffff;"
-                                                          width="400">
+                                                          <!-- Notice Box -->
                                                           <tr>
-                                                            <td align="left" valign="top">
+                                                            <td align="center" style="padding: 20px 30px;">
                                                               <table cellpadding="0" cellspacing="0" border="0"
-                                                                width="100%" align="center">
+                                                                width="100%"
+                                                                style="background-color: #3b8fc2; border-radius: 8px;">
                                                                 <tr>
-                                                                  <td align="center" valign="middle">
-                                                                    <img
-                                                                      src="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/c2d89a77-faaf-4d73-abcc-058f8a960282.png"
-                                                                      width="100%" border="0" async="true"
-                                                                      style="display:block"
-                                                                      title="Preparação para o Evento">
+                                                                  <td align="center" style="padding: 15px 20px;">
+                                                                    <p
+                                                                      style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #ffffff; margin: 0; line-height: 1.5; text-align: center;">
+                                                                      Para agilizar sua entrada, por favor, chegue com
+                                                                      5-10 minutos
+                                                                      de antecedência e não esqueça de ter seu QR Code e
+                                                                      token
+                                                                      de acesso em mãos.
+                                                                    </p>
                                                                   </td>
                                                                 </tr>
                                                               </table>
+                                                            </td>
+                                                          </tr>
+                                                          <!-- Products Image -->
+                                                          <tr>
+                                                            <td align="center" valign="top"
+                                                              style="padding: 15px 0 0 0;">
+                                                              <img
+                                                                src="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/7057b51a-2b20-4300-b865-f2b4251583a4.png"
+                                                                width="100%" border="0" async="true"
+                                                                style="display:block; max-width: 450px;"
+                                                                title="Produtos HYALU B5">
                                                             </td>
                                                           </tr>
                                                         </table>

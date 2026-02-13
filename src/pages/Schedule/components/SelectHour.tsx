@@ -14,13 +14,13 @@ interface SelectDayProps {
   selectedDate: SelectedDate;
   isLoading: boolean;
   currentAppointments:
-    | {
-        [key: string]: {
-          hour: string;
-          appointments: number;
-        };
-      }[]
-    | null;
+  | {
+    [key: string]: {
+      hour: string;
+      appointments: number;
+    };
+  }[]
+  | null;
 }
 
 export const SelectHour = ({
@@ -34,7 +34,7 @@ export const SelectHour = ({
   if (!currentAppointments) return <Loading />;
 
   const visibleHours = SUNDAY_LIMITED_DAYS.has(selectedDate.day)
-    ? hours.filter((hour) => hour.value >= "13:00" && hour.value <= "19:00")
+    ? hours.filter((hour) => hour.value >= "13:00" && hour.value <= "20:00")
     : hours;
 
   function handleSubmit() {

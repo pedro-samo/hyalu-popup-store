@@ -102,5 +102,13 @@ export const hours = [
   {
     label: "19:00",
     value: "19:00"
+  },
+  {
+    label: "20:00",
+    value: "20:00"
+  },
+  {
+    label: "21:00",
+    value: "21:00"
   }
 ];

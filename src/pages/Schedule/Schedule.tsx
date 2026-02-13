@@ -104,13 +104,13 @@ export const Schedule = ({ isPromoter }: { isPromoter?: boolean }) => {
       if (finallyData?.statusCode === 200) {
         if (!isPromoter) {
           userPasswordLogin(finallyData.token);
-          messageModal("Agendamento realizado com sucesso!", "success", "Sucesso!");
+          messageModal(finallyData.message, "success", "Sucesso!");
           return navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=qrCode`, {
             replace: true,
             state: { openDetails: true }
           });
         } else {
-          messageModal("Checkin realizado com sucesso!", "success", "Sucesso!");
+          messageModal(finallyData.message, "success", "Sucesso!");
           return navigate(`/${import.meta.env.VITE_URL_CLOUDPAGE_HASH}?page=promoter`, { replace: true });
         }
       } else {

@@ -75,7 +75,11 @@
             var keyName = "64593477-b709-4271-b6c7-329915c1eaef";
             var token = jwt.encode("HS256", keyName, jwtPayload, 60 * 60 * 24);
 
-            Write('{"token":' + Stringify(token) + ', "statusCode":200}');
+            Write(
+              '{"message":"Agendamento realizado com sucesso!","token":' +
+                Stringify(token) +
+                ', "statusCode":200}'
+            );
           } catch (err) {
             Write(
               '{"message":"Erro ao gerar token.","statusCode":500,"error":' +
@@ -106,11 +110,61 @@
           var Status = TSD.Send(fields.email, fields);
 
           if (Status != "OK") {
-            Write(
-              '{"message":"Não foi possível enviar o e-mail.","statusCode": 404,"details":' +
-                Stringify(Status) +
-                "}"
-            );
+            var inserted = false;
+            try {
+              fields.SubscriberKey = fields.email;
+              fields.EmailAddress = fields.email;
+              de.Rows.Add(fields);
+              inserted = true;
+            } catch (addErr) {
+              Write(
+                '{"message":"Não foi possível enviar o e-mail nem registrar o agendamento.","statusCode": 500,"details":' +
+                  Stringify(Status) +
+                  ',"error":' +
+                  Stringify(addErr) +
+                  "}"
+              );
+            }
+
+            if (inserted) {
+              var objReturned = {
+                email: fields.email,
+                name: fields.nome,
+                lastName: fields.sobrenome,
+                token: fields.token,
+                appointment: fields.dataHorario
+              };
+
+              try {
+                var cpFallback = new cloudpage(),
+                  jwtFallback = new jwt();
+                var jwtPayloadFallback = {
+                  iss: getPageUrl(false),
+                  user: objReturned
+                };
+                var keyNameFallback = "64593477-b709-4271-b6c7-329915c1eaef";
+                var tokenFallback = jwtFallback.encode(
+                  "HS256",
+                  keyNameFallback,
+                  jwtPayloadFallback,
+                  60 * 60 * 24
+                );
+
+                Write(
+                  '{"message":"Agendamento realizado! Tire um print do seu QR code e guarde na galeria, ele será necessário para sua entrada no evento.","token":' +
+                    Stringify(tokenFallback) +
+                    ', "statusCode":200,"details":' +
+                    Stringify(Status) +
+                    "}"
+                );
+              } catch (fallbackErr) {
+                Write(
+                  '{"message":"Erro ao gerar token.","statusCode":500,"error":' +
+                    Stringify(fallbackErr) +
+                    "}"
+                );
+              }
+            }
           } else {
             // --- JWT Token Logic ---
             var objReturned = {
@@ -131,7 +185,11 @@
               var keyName = "64593477-b709-4271-b6c7-329915c1eaef";
               var token = jwt.encode("HS256", keyName, jwtPayload, 60 * 60 * 24);
 
-              Write('{"token":' + Stringify(token) + ', "statusCode":200}');
+              Write(
+                '{"message":"Agendamento realizado com sucesso!","token":' +
+                  Stringify(token) +
+                  ', "statusCode":200}'
+              );
             } catch (err) {
               Write(
                 '{"message":"Erro ao gerar token.","statusCode":500,"error":' +
@@ -172,9 +230,62 @@
             var Status = TSD.Send(fields.email, fields);
 
             if (Status != "OK") {
-              Write(
-                '{"message":"Não foi possível enviar o e-mail.","statusCode": 404}'
-              );
+              var stored = false;
+              try {
+                fields.SubscriberKey = fields.email;
+                fields.EmailAddress = fields.email;
+                de.Rows.Add(fields);
+                stored = true;
+              } catch (storeErr) {
+                Write(
+                  '{"message":"Não foi possível enviar o e-mail nem registrar o agendamento.","statusCode": 500,"details":' +
+                    Stringify(Status) +
+                    ',"error":' +
+                    Stringify(storeErr) +
+                    "}"
+                );
+              }
+
+              if (stored) {
+                var objReturnedInsert = {
+                  email: fields.email,
+                  name: fields.nome,
+                  lastName: fields.sobrenome,
+                  token: fields.token,
+                  appointment: fields.dataHorario
+                };
+
+                try {
+                  var cpInsertFallback = new cloudpage(),
+                    jwtInsertFallback = new jwt();
+                  var jwtPayloadInsertFallback = {
+                    iss: getPageUrl(false),
+                    user: objReturnedInsert
+                  };
+                  var keyNameInsertFallback =
+                    "64593477-b709-4271-b6c7-329915c1eaef";
+                  var tokenInsertFallback = jwtInsertFallback.encode(
+                    "HS256",
+                    keyNameInsertFallback,
+                    jwtPayloadInsertFallback,
+                    60 * 60 * 24
+                  );
+
+                  Write(
+                    '{"message":"Agendamento realizado! Tire um print do seu QR code e guarde na galeria, ele será necessário para sua entrada no evento.","token":' +
+                      Stringify(tokenInsertFallback) +
+                      ', "statusCode":200,"details":' +
+                      Stringify(Status) +
+                      "}"
+                  );
+                } catch (insertFallbackErr) {
+                  Write(
+                    '{"message":"Erro ao gerar token.","statusCode":500,"error":' +
+                      Stringify(insertFallbackErr) +
+                      "}"
+                  );
+                }
+              }
             } else {
               // --- JWT Token Logic ---
               var objReturned = {
@@ -195,7 +306,11 @@
                 var keyName = "64593477-b709-4271-b6c7-329915c1eaef";
                 var token = jwt.encode("HS256", keyName, jwtPayload, 60 * 60 * 24);
 
-                Write('{"token":' + Stringify(token) + ', "statusCode":200}');
+                Write(
+                  '{"message":"Agendamento realizado com sucesso!","token":' +
+                    Stringify(token) +
+                    ', "statusCode":200}'
+                );
               } catch (err) {
                 Write(
                   '{"message":"Erro ao gerar token.","statusCode":500,"error":' +

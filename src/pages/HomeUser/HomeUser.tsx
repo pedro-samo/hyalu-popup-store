@@ -25,30 +25,25 @@ export const HomeUser = () => {
 
   return (
     <div className="home_user">
-      <span className="home_user_divider" />
 
       <div className="home_user_text">
+        <span className="home_user_divider" />
         <p className="home_user_text_lead">
-          A LA ROCHE-POSAY CONVIDA VOCÊ PARA UMA EXPERIÊNCIA <br /> INÉDITA: O PODER DO PREENCHIMENTO DE HYALU
+          A LA ROCHE-POSAY CONVIDA VOCÊ PARA PARTICIPAR
+          DA POP UP EXPERIENCE HYALU B5.
           <span className="highlight"> B5.</span>
         </p>
 
         <p className="home_user_text_body">
-          <strong>Pela primeira vez no Brasil,</strong> desembarcamos no Barra Shopping com uma imersão sensorial e
-          tecnológica totalmente dedicada ao queridinho dos dermatologistas. Prepare-se para descobrir a ciência por
-          trás do <strong>Hyalu</strong> <span className="highlight">B5</span>, o sérum que une a alta performance do
-          Ácido Hialurônico puro com a reparação profunda da Vitamina B5.
+          Conheça os novos lançamentos de <strong>Hyalu</strong> <span className="highlight">B5</span> e sinta de perto
+          o poder do preenchimento que vai evoluir a sua rotina
+          de cuidados com Ácido Hialurônico.
         </p>
 
-        <p className="home_user_text_cta">
-          VISITE A POP UP HYALU <span className="highlight">B5</span> E MERGULHE EM UM CENÁRIO CONTEMPORÂNEO E
-          SOFISTICADO, DESENHADO PARA TRANSFORMAR SUA ROTINA DE CUIDADOS.
-        </p>
-      </div>
-
-      <div className="home_user_buttons">
-        <Button text="Quero me cadastrar e agendar minha visita" onClick={handleRegisterClick} className="primary" />
-        <Button text="Quero consultar o meu agendamento" onClick={handleConsultClick} className="white" />
+        <div className="home_user_buttons">
+          <Button text="Quero me cadastrar e agendar minha visita" onClick={handleRegisterClick} className="primary" />
+          <Button text="Quero consultar o meu agendamento" onClick={handleConsultClick} className="white" />
+        </div>
       </div>
 
       <div className="home_user_products">

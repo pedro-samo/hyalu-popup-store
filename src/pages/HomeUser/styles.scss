@@ -5,6 +5,8 @@
   text-align: center;
   width: 100%;
   color: #000;
+  min-height: calc(100vh - 220px);
+  justify-content: space-between;
 
   &_header {
     text-transform: uppercase;
