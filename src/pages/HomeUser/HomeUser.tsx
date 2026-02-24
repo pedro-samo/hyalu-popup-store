@@ -30,7 +30,7 @@ export const HomeUser = () => {
         <span className="home_user_divider" />
         <p className="home_user_text_lead">
           A LA ROCHE-POSAY CONVIDA VOCÊ PARA PARTICIPAR
-          DA POP UP EXPERIENCE HYALU B5.
+          DA POP UP EXPERIENCE HYALU
           <span className="highlight"> B5.</span>
         </p>
 

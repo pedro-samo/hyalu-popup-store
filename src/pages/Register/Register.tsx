@@ -171,11 +171,11 @@ export const Register = ({ isPromoter }: { isPromoter?: boolean }) => {
             <label htmlFor="cienciaTermos">
               Aceito o Termos e Condições do Regulamento da campanha presentes no link:{" "}
               <a
-                href="http://image.crm.loreal.com.br/lib/fe8812727d6200787d/m/1/4eabd865-a145-43fa-b005-8aef7c5d62e3.pdf"
+                href="https://image.crm.dermaclub.com.br/lib/fe8b12727d62007b71/m/1/cd5158a4-6b3d-4d6c-88c6-669086c1bccc.pdf"
                 target="_blank"
                 rel="noreferrer"
               >
-                http://image.crm.loreal.com.br/lib/fe8812727d6200787d/m/1/4eabd865-a145-43fa-b005-8aef7c5d62e3.pdf
+                Regulamento da Campanha
               </a>
             </label>
           </div>

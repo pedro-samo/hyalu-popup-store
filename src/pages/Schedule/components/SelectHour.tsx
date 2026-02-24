@@ -55,7 +55,7 @@ export const SelectHour = ({
           const isDisabled = currentAppointments.some(
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-expect-error
-            (appointment) => appointment.hour === hour.value && appointment.appointments >= 20
+            (appointment) => appointment.hour === hour.value && appointment.appointments >= 60
           );
 
           return (

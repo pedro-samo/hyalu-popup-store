@@ -1,7 +1,7 @@
 .enel_reset {
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
+  background: #599de0;
   align-items: center;
   justify-content: center;
   padding: 2rem;
@@ -74,8 +74,8 @@
 
     &:focus {
       outline: none;
-      border-color: #e91e63;
-      box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+      border-color: #3b7bbc;
+      box-shadow: 0 0 0 3px rgba(1, 65, 137, 0.1);
     }
 
     &.error {
@@ -94,7 +94,7 @@
   }
 
   .submit_button {
-    background: #e91e63;
+    background: #23578c;
     color: white;
     padding: 1rem;
     border: none;
@@ -106,9 +106,9 @@
     margin-top: 1rem;
 
     &:hover:not(:disabled) {
-      background: #c2185b;
+      background: #23578c;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+      box-shadow: 0 4px 12px rgba(40, 114, 224, 0.3);
     }
 
     &:disabled {
@@ -125,7 +125,7 @@
   font-size: 0.9rem;
 
   .login {
-    color: #e91e63;
+    color: #23578c;
     background: none;
     border: none;
     cursor: pointer;
@@ -136,7 +136,7 @@
     margin-left: 0.25rem;
 
     &:hover {
-      color: #c2185b;
+      color: #23578c;
     }
   }
 }

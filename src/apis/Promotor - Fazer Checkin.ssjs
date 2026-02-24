@@ -36,15 +36,24 @@
       var payloadObj = Platform.Function.ParseJSON(payload);
 
       var email = payloadObj.fields.email;
+      var brand = payloadObj.fields.brand;
 
-      var brand = Platform.Request.GetQueryStringParameter("brand");
-
-      var deAppointmentsKeys = {
+      var deAppointmentsMap = {
         vichy: "3AF34049-298E-4030-9058-477A35FCF3DA", // tb_vichy_popup_store_appointments
         hyalu: "74206CBD-4294-46EC-898C-C7F7CD713117" // tb_lrp_hyalu_popup_store_appointments
       };
 
-      var DE = deAppointmentsKeys[brand];
+      // Brand's DE comes first, fallback to the other one
+      var brandKey = deAppointmentsMap[brand];
+      var fallbackKeys = [];
+      for (var key in deAppointmentsMap) {
+        if (deAppointmentsMap[key] !== brandKey) {
+          fallbackKeys.push(deAppointmentsMap[key]);
+        }
+      }
+      var deAppointmentsKeys = brandKey
+        ? [brandKey].concat(fallbackKeys)
+        : fallbackKeys;
 
       var filter = {
         Property: "email",
@@ -53,13 +62,37 @@
       };
 
       if (email) {
-        var myDE = DataExtension.Init(DE);
+        var myDE = null;
+        var rows = null;
+        var foundIndex = -1;
 
-        // Retrieve the row by email
-        var rows = myDE.Rows.Retrieve(filter);
+        for (var i = 0; i < deAppointmentsKeys.length; i++) {
+          var tempDE = DataExtension.Init(deAppointmentsKeys[i]);
+          var tempRows = tempDE.Rows.Retrieve(filter);
+          if (tempRows && tempRows.length > 0) {
+            myDE = tempDE;
+            rows = tempRows;
+            foundIndex = i;
+            break;
+          }
+        }
+
         if (rows && rows.length > 0) {
           var currentCheckin = rows[0].checkin;
           if (currentCheckin === "True") {
+            // Check-in already done in first DE, try the second DE
+            var secondCheckinDone = false;
+            for (var j = foundIndex + 1; j < deAppointmentsKeys.length; j++) {
+              var secondDE = DataExtension.Init(deAppointmentsKeys[j]);
+              var secondRows = secondDE.Rows.Retrieve(filter);
+              if (secondRows && secondRows.length > 0) {
+                if (secondRows[0].checkin !== "True") {
+                  secondDE.Rows.Update({ checkin: "True" }, ["email"], [email]);
+                }
+                secondCheckinDone = true;
+                break;
+              }
+            }
             Write(
               '{"message":"Check-in já realizado anteriormente.","statusCode": 409}'
             );

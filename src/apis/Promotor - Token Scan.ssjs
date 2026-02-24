@@ -29,27 +29,32 @@
 
     var brand = Platform.Request.GetQueryStringParameter("brand");
 
-    var deAppointmentsKeys = {
-      vichy: "3AF34049-298E-4030-9058-477A35FCF3DA", // tb_vichy_popup_store_appointments
-      hyalu: "74206CBD-4294-46EC-898C-C7F7CD713117" // tb_lrp_hyalu_popup_store_appointments
-    };
-
-    var DE_KEY = deAppointmentsKeys[brand];
+    var deAppointmentsKeys = [
+      "3AF34049-298E-4030-9058-477A35FCF3DA", // tb_vichy_popup_store_appointments
+      "74206CBD-4294-46EC-898C-C7F7CD713117" // tb_lrp_hyalu_popup_store_appointments
+    ];
 
     var token = payloadObj.fields ? payloadObj.fields.token : null;
 
     if (token && token.length > 0) {
-      var DE = DataExtension.Init(DE_KEY);
-
       var filter = {
         Property: "token",
         SimpleOperator: "equals",
         Value: token
       };
 
-      var userFiltered = DE.Rows.Retrieve(filter);
+      var userFiltered = null;
 
-      if (userFiltered.length > 0) {
+      for (var i = 0; i < deAppointmentsKeys.length; i++) {
+        var DE = DataExtension.Init(deAppointmentsKeys[i]);
+        var result = DE.Rows.Retrieve(filter);
+        if (result.length > 0) {
+          userFiltered = result;
+          break;
+        }
+      }
+
+      if (userFiltered && userFiltered.length > 0) {
         var objReturned = {
           email: userFiltered[0].email,
           name: userFiltered[0].nome,

@@ -1,20 +1,92 @@
-%%[
-SET @deKey = "tb_lrp_hyalu_popup_store_appointments"
+<script runat="server">
+  Platform.Load("core", "1.1.1");
 
+  var deKey = "tb_lrp_hyalu_popup_store_appointments";
+  var totalCheckinTrue = 0;
+  var totalCheckinFalse = 0;
+  var totalRJ = 0;
+
+  try {
+    var DE = DataExtension.Init(deKey);
+    var moreData = true;
+    var reqID = null;
+    var prox = new Script.Util.WSProxy();
+    var cols = ["checkin", "local"];
+
+    while (moreData) {
+      var resp;
+      if (reqID == null) {
+        resp = prox.retrieve("DataExtensionObject[" + deKey + "]", cols);
+      } else {
+        resp = prox.getNextBatch("DataExtensionObject[" + deKey + "]", reqID);
+      }
+
+      if (resp != null && resp.Results != null && resp.Results.length > 0) {
+        for (var i = 0; i < resp.Results.length; i++) {
+          var row = resp.Results[i];
+          var checkinVal = "";
+          var localVal = "";
+
+          /* WSProxy retorna Properties como array de {Name, Value} */
+          var props = row.Properties;
+          if (props != null) {
+            for (var p = 0; p < props.length; p++) {
+              var prop = props[p];
+              if (prop.Name == "checkin") checkinVal = String(prop.Value);
+              if (prop.Name == "local") localVal = String(prop.Value);
+            }
+          }
+
+          /* Campo Boolean pode vir como "True", "true", "1", true */
+          var cv = checkinVal.toLowerCase();
+          if (cv == "true" || cv == "1" || cv == "yes") {
+            totalCheckinTrue++;
+          } else {
+            totalCheckinFalse++;
+          }
+
+          if (localVal == "Rio de Janeiro - Barra Shopping") {
+            totalRJ++;
+          }
+        }
+
+        moreData = (resp.HasMoreRows == true);
+        reqID = resp.RequestID;
+      } else {
+        moreData = false;
+      }
+    }
+
+  } catch (e) {
+    Variable.SetValue("@useFallback", "true");
+    Variable.SetValue("@ssjs_error", Stringify(e));
+  }
+
+  var totalRegistros = totalCheckinTrue + totalCheckinFalse;
+
+  Variable.SetValue("@totalCheckinTrue", totalCheckinTrue);
+  Variable.SetValue("@totalCheckinFalse", totalCheckinFalse);
+  Variable.SetValue("@totalRegistros", totalRegistros);
+  Variable.SetValue("@totalRJ", totalRJ);
+  Variable.SetValue("@deKey", deKey);
+</script>
+
+%%[
+/* Fallback AMPscript caso SSJS falhe */
+IF @useFallback == "true" THEN
+SET @deKey = "tb_lrp_hyalu_popup_store_appointments"
 SET @checkinTrue = LookupRows(@deKey, "checkin", "True")
 SET @totalCheckinTrue = RowCount(@checkinTrue)
-
 SET @checkinFalse = LookupRows(@deKey, "checkin", "False")
 SET @totalCheckinFalse = RowCount(@checkinFalse)
-
 SET @totalRegistros = Add(@totalCheckinTrue, @totalCheckinFalse)
-
-SET @appointments = LookupOrderedRows(@deKey, 100, "dataHorario ASC", "checkin", "True")
-SET @appointmentsFalse = LookupOrderedRows(@deKey, 100, "dataHorario ASC", "checkin", "False")
-
 SET @storeRJ = LookupRows(@deKey, "local", "Rio de Janeiro - Barra Shopping")
 SET @totalRJ = RowCount(@storeRJ)
+ENDIF
 
+/* Buscar registros para as tabelas (exibição limitada a 2000) */
+SET @appointments = LookupOrderedRows(@deKey, 100, "dataHorario ASC", "checkin", "True")
+SET @appointmentsFalse = LookupOrderedRows(@deKey, 100, "dataHorario ASC", "checkin", "False")
 ]%%
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -46,6 +118,9 @@ SET @totalRJ = RowCount(@storeRJ)
       <p class="subtitle">Painel de Agendamentos</p>
     </div>
   </header>
+
+  <!-- DEBUG: remover depois de confirmar funcionamento -->
+  <!-- Fallback: %%=v(@useFallback)=%% | Erro: %%=v(@ssjs_error)=%% -->
 
   <main class="main-content">
     <!-- Cards de Resumo -->

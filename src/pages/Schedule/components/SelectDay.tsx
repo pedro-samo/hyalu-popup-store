@@ -39,10 +39,11 @@ export const SelectDay = ({ setStep, selectedDate, setSelectedDate, isLoading }:
                 setError("");
               }}
               type="button"
+              disabled={day.reserved || day.isCompleted}
             >
               <span className="day-weekday">{day.day.toUpperCase()}</span>
               <span className="day-date">
-                {day.label.toUpperCase()} {yearShort}
+                {day.reserved ? "ESGOTADO" : day.isCompleted ? "CONCLUÍDO" : `${day.label}/${yearShort}`}
               </span>
             </button>
           );

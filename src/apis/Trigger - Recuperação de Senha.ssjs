@@ -78,8 +78,8 @@
             };
 
             var triggerKey = {
-              vichy: "124388",
-              hyalu: "124280"
+              vichy: "124280",
+              hyalu: "124388"
             };
 
             var TSD = TriggeredSend.Init(triggerKey[brand]);
