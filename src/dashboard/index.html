@@ -71,6 +71,43 @@
   Variable.SetValue("@deKey", deKey);
 </script>
 
+<script runat="server">
+  /* Bloco isolado — Cadastro Express (usuários sem dataNascimento) */
+  Platform.Load("core", "1.1.1");
+  var totalUsers = 0;
+  var usersComData = 0;
+  try {
+    var proxE = new Script.Util.WSProxy();
+
+    var filterComData = {
+      Property: "dataNascimento",
+      SimpleOperator: "isNull",
+      Value: ""
+    };
+    var moreCD = true;
+    var reqCD = null;
+    while (moreCD) {
+      var rCD;
+      if (reqCD == null) {
+        rCD = proxE.retrieve("DataExtensionObject[tb_lrp_hyalu_popup_store_users]", ["SubscriberKey"], filterComData);
+      } else {
+        rCD = proxE.getNextBatch("DataExtensionObject[tb_lrp_hyalu_popup_store_users]", reqCD);
+      }
+      if (rCD != null && rCD.Results != null && rCD.Results.length > 0) {
+        usersComData += rCD.Results.length;
+        moreCD = (rCD.HasMoreRows == true);
+        reqCD = rCD.RequestID;
+      } else {
+        moreCD = false;
+      }
+    }
+  } catch (ex) {
+    /* falha silenciosa */
+  }
+
+  Variable.SetValue("@totalCadastroExpress", usersComData);
+</script>
+
 %%[
 /* Fallback AMPscript caso SSJS falhe */
 IF @useFallback == "true" THEN
@@ -139,7 +176,7 @@ SET @appointmentsFalse = LookupOrderedRows(@deKey, 100, "dataHorario ASC", "chec
           </div>
           <div class="card-content">
             <span class="card-number">%%=v(@totalRegistros)=%%</span>
-            <span class="card-label">Total de Registros</span>
+            <span class="card-label">Total de Agendamentos</span>
           </div>
         </div>
 
@@ -168,6 +205,19 @@ SET @appointmentsFalse = LookupOrderedRows(@deKey, 100, "dataHorario ASC", "chec
           <div class="card-content">
             <span class="card-number">%%=v(@totalCheckinFalse)=%%</span>
             <span class="card-label">Check-ins Pendentes</span>
+          </div>
+        </div>
+
+        <div class="card card-express">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+            </svg>
+          </div>
+          <div class="card-content">
+            <span class="card-number">%%=v(@totalCadastroExpress)=%%</span>
+            <span class="card-label">Cadastro Express</span>
           </div>
         </div>
       </div>

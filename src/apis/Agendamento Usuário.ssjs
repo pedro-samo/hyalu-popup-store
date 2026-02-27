@@ -1,11 +1,11 @@
 <script runat="server">
     Platform.Load("Core", "1.1.5");
     // CORS headers
-    Platform.Response.SetResponseHeader("Access-Control-Allow-Origin", "*");
     Platform.Response.SetResponseHeader(
-      "Access-Control-Allow-Methods",
-      "POST, GET, OPTIONS"
+      "Access-Control-Allow-Origin",
+      "https://cloud.crm.dermaclub.com.br"
     );
+    Platform.Response.SetResponseHeader("Access-Control-Allow-Methods", "POST");
     Platform.Response.SetResponseHeader(
       "Access-Control-Allow-Headers",
       "Authorization, Content-Type"
@@ -51,7 +51,32 @@
     var deName = deNames[brand];
     var triggerId = triggerIds[brand];
 
-    if (payloadObj.action && payloadObj.action == "remove" && fields.email) {
+    // --- Payload Validation ---
+    var validPayload = true;
+    var validationMessage = "";
+
+    if (!fields || !fields.token) {
+      validPayload = false;
+      validationMessage =
+        '{"message":"Token não informado no payload.","statusCode":400}';
+    } else {
+      var tokenPattern = /^(LRP|VIC)\d{7}$/;
+      if (!tokenPattern.test(fields.token)) {
+        validPayload = false;
+        validationMessage = '{"message":"Token inválido.","statusCode":400}';
+      } else if (fields.linkQrCode) {
+        var expectedLink = "https://quickchart.io/qr?text=" + fields.token;
+        if (fields.linkQrCode !== expectedLink) {
+          validPayload = false;
+          validationMessage =
+            '{"message":"O campo linkQrCode é inválido ou não corresponde ao token.","statusCode":400}';
+        }
+      }
+    }
+
+    if (!validPayload) {
+      Write(validationMessage);
+    } else if (payloadObj.action && payloadObj.action == "remove" && fields.email) {
       try {
         var de = DataExtension.Init(deName);
         var deletedCount = de.Rows.Remove(["email"], [fields.email]);

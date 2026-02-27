@@ -175,6 +175,15 @@ body {
   color: var(--warning-orange);
 }
 
+.card-express {
+  border-left-color: #7b1fa2;
+}
+
+.card-express .card-icon {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
 .card-icon {
   width: 70px;
   height: 70px;
